@@ -13,6 +13,7 @@ import V2HelpSupport from "./pages/V2HelpSupport.jsx";
 import V2Campaign from "./pages/V2Campaign.jsx";
 import V2SelectPackage from "./pages/V2SelectPackage.jsx";
 import V2SocialMediaDetails from "./pages/V2SocialMediaDetails.jsx";
+import V2CustomTask from "./pages/V2CustomTask.jsx";
 import {
   V2PreviewSelections,
   V2InsufficientBalance,
@@ -75,6 +76,8 @@ if (pathname === "/" || pathname === "") {
   renderV2(<V2Settings />);
 } else if (pathname === "/help-support") {
   renderV2(<V2HelpSupport />);
+} else if (pathname === "/campaigns/custom-task") {
+  renderV2(<V2CustomTask />);
 } else if (pathname === "/campaigns/subscription-success") {
   renderV2(<V2SubscriptionSuccessful />);
 } else if (pathname === "/campaigns/insufficient-balance") {
