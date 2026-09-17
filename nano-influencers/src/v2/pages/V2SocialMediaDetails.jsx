@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import "./v2-social-media-details.css";
 
 const assets = {
@@ -60,6 +59,10 @@ const nigerianStates = [
   "Kebbi", "Kogi", "Kwara", "Lagos", "Nasarawa", "Niger", "Ogun", "Ondo", "Osun", "Oyo", "Plateau",
   "Rivers", "Sokoto", "Taraba", "Yobe", "Zamfara", "FCT Abuja",
 ];
+
+function go(path) {
+  if (typeof window !== "undefined") window.location.assign(path);
+}
 
 function SectionHeader({ title, subtitle, helper, optional = false }) {
   return (
@@ -155,7 +158,6 @@ function PlatformGrid({ selected, onSelect }) {
 }
 
 export default function V2SocialMediaDetails() {
-  const navigate = useNavigate();
   const [categories, setCategories] = useState(() => (
     typeof window !== "undefined" && window.innerWidth <= 700
       ? ["Entertainment", "Real Estate"]
@@ -178,11 +180,29 @@ export default function V2SocialMediaDetails() {
     setCategories((current) => current.filter((value) => value !== item));
   };
 
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    if (typeof window !== "undefined") {
+      window.sessionStorage.setItem("v2CampaignDraft", JSON.stringify({
+        categories,
+        specification,
+        platform,
+        pageLink,
+        state,
+        area,
+        extra,
+        referral,
+        source,
+      }));
+    }
+    go("/campaigns/preview-selections");
+  };
+
   return (
     <main className="v2-sm-page">
       <div className="v2-sm-shell">
         <header className="v2-sm-backbar">
-          <button type="button" onClick={() => navigate("/campaigns/select-package")}>
+          <button type="button" onClick={() => go("/campaigns/select-package")}>
             <img src={assets.arrowLeft} alt="" />
             <span>Go Back</span>
           </button>
@@ -190,10 +210,10 @@ export default function V2SocialMediaDetails() {
 
         <section className="v2-sm-tabs" aria-label="Campaign details steps">
           <button type="button" className="is-active">Social Media Details</button>
-          <button type="button">Preview Selections</button>
+          <button type="button" onClick={() => go("/campaigns/preview-selections")}>Preview Selections</button>
         </section>
 
-        <form className="v2-sm-form" onSubmit={(event) => event.preventDefault()}>
+        <form className="v2-sm-form" onSubmit={handleSubmit}>
           <section className="v2-sm-panel v2-sm-category-panel">
             <SectionHeader
               title="Social Media Details"
