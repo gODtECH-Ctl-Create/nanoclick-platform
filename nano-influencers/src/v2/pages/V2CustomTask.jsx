@@ -112,6 +112,7 @@ export default function V2CustomTask() {
       privacyAccepted,
       termsAccepted,
     }));
+    window.location.assign("/campaigns/custom-task/insufficient-balance");
   };
 
   return (
