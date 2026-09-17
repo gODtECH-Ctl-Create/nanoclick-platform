@@ -14,6 +14,11 @@ import V2Campaign from "./pages/V2Campaign.jsx";
 import V2SelectPackage from "./pages/V2SelectPackage.jsx";
 import V2SocialMediaDetails from "./pages/V2SocialMediaDetails.jsx";
 import {
+  V2PreviewSelections,
+  V2InsufficientBalance,
+  V2SubscriptionSuccessful,
+} from "./pages/V2SubscriptionFlow.jsx";
+import {
   V2ManageCampaign,
   V2OngoingCampaigns,
   V2PendingCampaigns,
@@ -70,6 +75,12 @@ if (pathname === "/" || pathname === "") {
   renderV2(<V2Settings />);
 } else if (pathname === "/help-support") {
   renderV2(<V2HelpSupport />);
+} else if (pathname === "/campaigns/subscription-success") {
+  renderV2(<V2SubscriptionSuccessful />);
+} else if (pathname === "/campaigns/insufficient-balance") {
+  renderV2(<V2InsufficientBalance />);
+} else if (pathname === "/campaigns/preview-selections") {
+  renderV2(<V2PreviewSelections />);
 } else if (pathname === "/campaigns/social-media-details") {
   renderV2(<V2SocialMediaDetails />);
 } else if (pathname === "/campaigns/select-package") {
