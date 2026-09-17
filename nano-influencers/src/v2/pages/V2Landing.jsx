@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./v2-landing.css";
+import { ServicesSection, TestimonialsSection, HowItWorksSection } from "./LandingSections.jsx";
 
 const assets = {
   brand: "https://www.figma.com/api/mcp/asset/ca145df1-e216-4f40-a0f3-96fc3f47f8b0.svg",
@@ -138,9 +139,9 @@ export default function V2Landing() {
   return (
     <main className="v2-landing">
       <Hero />
-      <section className="v2-next-section" id="services">
-        <p>V2 landing page rebuild in progress — Services is next.</p>
-      </section>
+      <ServicesSection />
+      <TestimonialsSection />
+      <HowItWorksSection />
     </main>
   );
 }
