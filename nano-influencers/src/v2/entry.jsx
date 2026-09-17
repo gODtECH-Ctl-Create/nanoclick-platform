@@ -11,6 +11,13 @@ import { V2Wallet, V2WalletSuccess } from "./pages/V2Wallet.jsx";
 import V2Settings from "./pages/V2Settings.jsx";
 import V2HelpSupport from "./pages/V2HelpSupport.jsx";
 import V2Campaign from "./pages/V2Campaign.jsx";
+import {
+  V2ManageCampaign,
+  V2OngoingCampaigns,
+  V2PendingCampaigns,
+  V2CampaignNotifications,
+  V2ClaimSubmitted,
+} from "./pages/V2CampaignManagement.jsx";
 // Keep the comparison fixes in the V2 bundle so preview deployments always include them.
 import "./pages/v2-dashboard-fixes.css";
 import "./pages/v2-wallet-fixes.css";
@@ -61,6 +68,16 @@ if (pathname === "/" || pathname === "") {
   renderV2(<V2Settings />);
 } else if (pathname === "/help-support") {
   renderV2(<V2HelpSupport />);
+} else if (pathname === "/campaigns/manage") {
+  renderV2(<V2ManageCampaign />);
+} else if (pathname === "/campaigns/ongoing") {
+  renderV2(<V2OngoingCampaigns />);
+} else if (pathname === "/campaigns/pending") {
+  renderV2(<V2PendingCampaigns />);
+} else if (pathname === "/campaigns/notifications") {
+  renderV2(<V2CampaignNotifications />);
+} else if (pathname === "/campaigns/claim-success") {
+  renderV2(<V2ClaimSubmitted />);
 } else if (pathname === "/campaigns") {
   renderV2(<V2Campaign />);
 } else if (pathname === "/dashboard" || pathname === "/app") {
