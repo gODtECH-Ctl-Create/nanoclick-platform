@@ -20,7 +20,7 @@ function AuthBrand() {
 
 function OAuthButton({ icon, children }) {
   return (
-    <button className="v2-auth-oauth-button" type="button">
+    <button className="v2-auth-oauth-button" type="button" onClick={() => { window.location.href = "/dashboard"; }}>
       <img src={icon} alt="" />
       <span>{children}</span>
     </button>
