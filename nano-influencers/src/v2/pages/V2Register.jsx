@@ -19,7 +19,7 @@ function Brand() {
 
 function OAuthButton({ provider, icon }) {
   return (
-    <button className="v2-register-oauth-button" type="button">
+    <button className="v2-register-oauth-button" type="button" onClick={() => { window.location.href = "/dashboard"; }}>
       <img src={icon} alt="" />
       <span>Continue with {provider}</span>
     </button>
