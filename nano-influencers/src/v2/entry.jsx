@@ -19,6 +19,7 @@ import V2SelectPackage from "./pages/V2SelectPackage.jsx";
 import V2SocialMediaDetails from "./pages/V2SocialMediaDetails.jsx";
 import V2CustomTask from "./pages/V2CustomTask.jsx";
 import V2SocialTaskCampaign from "./pages/V2SocialTaskCampaign.jsx";
+import V2WhatsAppTaskCampaign from "./pages/V2WhatsAppTaskCampaign.jsx";
 import { V2WordOfMouth, V2WordOfMouthPreview } from "./pages/V2WordOfMouth.jsx";
 import { V2ConnectivityGate, V2ErrorBoundary, V2SystemState } from "./pages/V2SystemState.jsx";
 import { installV2Navigation } from "./navigation.js";
@@ -98,6 +99,8 @@ if (pathname === "/" || pathname === "") {
   renderV2(<V2Settings />);
 } else if (pathname === "/help-support" || pathname === "/support") {
   renderV2(<V2HelpSupport />);
+} else if (pathname === "/campaigns/create/whatsapp") {
+  renderV2(<V2WhatsAppTaskCampaign />);
 } else if (socialCreatorPath.test(pathname)) {
   renderV2(<V2SocialTaskCampaign />);
 } else if (pathname === "/campaigns/word-of-mouth/insufficient-balance") {
