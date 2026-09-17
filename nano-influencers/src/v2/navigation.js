@@ -8,6 +8,14 @@ const sidebarRoutes = {
   "Help & Support": "/help-support",
 };
 
+const socialCampaignRoutes = {
+  Facebook: "/campaigns/create/facebook",
+  Youtube: "/campaigns/create/youtube",
+  Twitter: "/campaigns/create/x",
+  Instagram: "/campaigns/create/instagram",
+  TikTok: "/campaigns/create/tiktok",
+};
+
 function textOf(element) {
   return (element?.textContent || "").replace(/\s+/g, " ").trim();
 }
@@ -84,7 +92,7 @@ function routeForCampaign(control) {
   if (!control.closest(".v2-campaign-page")) return null;
   if (control.matches(".v2-campaign-logout")) return "/login";
   if (control.matches(".v2-campaign-notification")) return "/campaigns/notifications";
-  if (control.matches(".v2-campaign-platform-card")) return "/campaigns/custom-task";
+  if (control.matches(".v2-campaign-platform-card")) return socialCampaignRoutes[textOf(control)] || "/campaigns/custom-task";
   return null;
 }
 
