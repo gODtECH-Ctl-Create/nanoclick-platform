@@ -170,7 +170,7 @@ function PricingCard({ planLabel, price, unit, features, highlighted = false, sh
           <div className="v2-package-feature" key={feature}><img src={assets.check} alt="" /><span>{feature}</span></div>
         ))}
       </div>
-      {showSubscribe && <Button className="v2-package-plan-subscribe">Subscribe</Button>}
+      {showSubscribe && <Button to="/campaigns/social-media-details" className="v2-package-plan-subscribe">Subscribe</Button>}
     </article>
   );
 }
@@ -252,7 +252,7 @@ export default function V2SelectPackage() {
             <section className="v2-package-summary">
               <PricingCard planLabel={planLabel} price={selectedTier.price} unit="/month" features={baseFeatures} />
               <div className="v2-package-summary-actions">
-                <Button>Subscribe</Button>
+                <Button to="/campaigns/social-media-details">Subscribe</Button>
                 <Button variant="secondary" onClick={() => setAllPlans(true)}>See All Plans</Button>
               </div>
             </section>
