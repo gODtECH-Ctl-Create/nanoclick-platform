@@ -7,6 +7,7 @@ import V2Login from "./pages/V2Login.jsx";
 import V2ForgotPassword from "./pages/V2ForgotPassword.jsx";
 import V2Dashboard from "./pages/V2Dashboard.jsx";
 import { V2FreeTrial, V2WeeklyGiveaway } from "./pages/V2DashboardExtras.jsx";
+import { V2Wallet, V2WalletSuccess } from "./pages/V2Wallet.jsx";
 // Keep the dashboard comparison fixes in the V2 bundle so preview deployments always include them.
 import "./pages/v2-dashboard-fixes.css";
 import {
@@ -47,6 +48,10 @@ if (pathname === "/" || pathname === "") {
   renderV2(<V2FreeTrial />);
 } else if (pathname === "/dashboard/giveaway") {
   renderV2(<V2WeeklyGiveaway />);
+} else if (pathname === "/wallet/success") {
+  renderV2(<V2WalletSuccess />);
+} else if (pathname === "/wallet") {
+  renderV2(<V2Wallet />);
 } else if (pathname === "/dashboard" || pathname === "/app") {
   renderV2(<V2Dashboard />);
 } else {
