@@ -34,7 +34,6 @@ const shareDestinations = [
   ["Friends DM", 10], ["Status", 20], ["Group Chat", 30], ["Brodcast", 75], ["Channel", 100], ["Community", 200],
 ];
 const callDurations = [["15mins Call", 100], ["30mins Call", 200], ["45mins Call", 300], ["60mins Call", 400], ["90mins Call", 600]];
-
 const money = (value) => `₦${Number(value || 0).toLocaleString("en-NG")}`;
 
 function FieldHeader({ title, help }) {
@@ -88,11 +87,6 @@ function TaskGrid({ selected, onSelect }) {
       <button className="v2-stc-how" type="button">Click this text to know how this service works</button>
     </section>
   );
-}
-
-function SimpleTaskPanel({ task }) {
-  if (task.kind !== "simple") return null;
-  return <section className="v2-stc-panel"><div className="v2-wa-service-title"><h2>{task.label}</h2><p>(Cost {money(task.cost)})</p></div></section>;
 }
 
 function ShareTaskPanel({ destinations, setDestinations, formats, setFormats, videoCount, setVideoCount, imageCount, setImageCount, videoFile, setVideoFile, imageFile, setImageFile, videoLink, setVideoLink, imageLink, setImageLink, videoText, setVideoText, imageText, setImageText }) {
@@ -213,14 +207,13 @@ export default function V2WhatsAppTaskCampaign() {
         <TaskGrid selected={selectedTask} onSelect={chooseTask} />
 
         <form className="v2-stc-fields" onSubmit={submit}>
-          <SimpleTaskPanel task={selectedTask} />
           {selectedTask.kind === "share" ? <ShareTaskPanel destinations={shareDest} setDestinations={setShareDest} formats={formats} setFormats={setFormats} videoCount={videoCount} setVideoCount={setVideoCount} imageCount={imageCount} setImageCount={setImageCount} videoFile={videoFile} setVideoFile={setVideoFile} imageFile={imageFile} setImageFile={setImageFile} videoLink={videoLink} setVideoLink={setVideoLink} imageLink={imageLink} setImageLink={setImageLink} videoText={videoText} setVideoText={setVideoText} imageText={imageText} setImageText={setImageText} /> : null}
           {selectedTask.kind === "call" ? <CallTaskPanel callType={callType} setCallType={setCallType} duration={duration} setDuration={setDuration} /> : null}
           {selectedTask.kind === "follow" ? <FollowTaskPanel followKinds={followKinds} setFollowKinds={setFollowKinds} /> : null}
           {selectedTask.kind === "report" ? <ReportTaskPanel values={reportValues} setValue={setReportValue} evidence={reportEvidence} setEvidence={setReportEvidence} /> : null}
-          {selectedTask.kind === "community" ? <section className="v2-stc-panel v2-wa-community-empty"><p>Community for You is included in the WhatsApp service menu. The supplied Figma section does not contain a separate active-state form for this card.</p></section> : null}
 
           {selectedTask.kind !== "community" ? <section className="v2-stc-panel v2-wa-common-panel">
+            {selectedTask.kind === "simple" ? <div className="v2-wa-service-title"><h2>{selectedTask.label}</h2><p>(Cost {money(selectedTask.cost)})</p></div> : null}
             {showLink ? <div className="v2-stc-field"><FieldHeader title="Link" help="Ensure that you drop the correct link here." /><p className="v2-stc-inline-note">Drop the link to the post here.</p><input className="v2-stc-input" value={link} onChange={(e) => setLink(e.target.value)} placeholder="https://whatsapp.com/..." /></div> : null}
             <div className="v2-stc-field"><FieldHeader title="Total Quantity" help="Total quantity based on the addition of all individual quantities." /><input className="v2-stc-input" type="number" min="0" value={quantity} onChange={(e) => setQuantity(e.target.value)} placeholder="0" /></div>
             <div className="v2-stc-field"><FieldHeader title="Cost" help="Total cost based on the addition of all individual costs." /><input className="v2-stc-input" value={money(totalCost)} readOnly /></div>
