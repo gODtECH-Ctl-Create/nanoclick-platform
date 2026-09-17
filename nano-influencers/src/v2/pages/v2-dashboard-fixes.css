@@ -1,0 +1,24 @@
+/* Follow-up fidelity fixes from Figma comparison. */
+@media (min-width: 901px) {
+  .v2-dashboard-page {
+    width: 100%;
+    max-width: none;
+  }
+
+  .v2-dashboard-main {
+    flex: 1 1 0;
+    width: auto;
+    max-width: none;
+  }
+
+  .v2-dashboard-insights,
+  .v2-dashboard-lower {
+    grid-template-columns: minmax(0, 1fr) minmax(330px, 374px);
+  }
+}
+
+@media (max-width: 900px) {
+  .v2-dashboard-welcome.desktop-welcome {
+    display: none !important;
+  }
+}
