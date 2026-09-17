@@ -92,6 +92,95 @@ const tiktokIcons = {
   stitch: "https://www.figma.com/api/mcp/asset/5175fb35-8050-48fd-82dc-bd8fe4b8ca27.svg",
 };
 
+
+const linkedinIcons = {
+  like: "https://www.figma.com/api/mcp/asset/32300350-2acb-49b7-9722-187e6fa4716b.svg",
+  followers: "https://www.figma.com/api/mcp/asset/12df5c41-0982-49ec-bf14-a5d02c5de2cf.svg",
+  share: "https://www.figma.com/api/mcp/asset/6c1cec1b-8c9a-4816-9232-d80e1ee82f46.svg",
+  comment: "https://www.figma.com/api/mcp/asset/add318b6-f24b-4cdb-b5b7-966feb7d1b36.svg",
+  live: "https://www.figma.com/api/mcp/asset/bbfc9d64-b1dd-4513-ba44-0299d1279bac.svg",
+  connections: "https://www.figma.com/api/mcp/asset/12df5c41-0982-49ec-bf14-a5d02c5de2cf.svg",
+  save: "https://www.figma.com/api/mcp/asset/6137c24e-a50e-4681-b92b-8110973261aa.svg",
+  video: "https://www.figma.com/api/mcp/asset/71e8c8b8-298b-48dd-9128-4991a91b4cca.svg",
+  report: "https://www.figma.com/api/mcp/asset/7bbd7a70-04b7-48bc-9395-37915e177204.svg",
+  external: "https://www.figma.com/api/mcp/asset/ae40581e-ddf6-44dc-b1ca-9b67f7637040.svg",
+  repost: "https://www.figma.com/api/mcp/asset/87e8182d-7a6d-4c36-b484-e5f75123c8cf.svg",
+  interactive: "https://www.figma.com/api/mcp/asset/260f2b3e-db75-4bb3-a2b9-fc358aff2ab4.svg",
+};
+
+const audiomackIcons = {
+  liked: "https://www.figma.com/api/mcp/asset/ca182e7d-2a4f-4b4f-97fb-b21f91b2da8d.svg",
+  follow: "https://www.figma.com/api/mcp/asset/24e66194-2efd-49b6-a59d-7d73c6af0707.svg",
+  share: "https://www.figma.com/api/mcp/asset/4823fdde-76df-4e1a-81c7-1a3320015c40.svg",
+  boost: "https://www.figma.com/api/mcp/asset/a9926da1-4571-4bae-aa4c-e67d856bb59f.svg",
+  playlist: "https://www.figma.com/api/mcp/asset/92aa57f4-f850-4e75-b338-1a7656f53241.svg",
+  resave: "https://www.figma.com/api/mcp/asset/db66e9b4-2a47-4d7d-856a-87e040b16ca1.svg",
+  unique: "https://www.figma.com/api/mcp/asset/fc5b61ba-d215-471d-b19e-5f20e3aa5a9d.svg",
+  multiple: "https://www.figma.com/api/mcp/asset/27cfc1c1-a130-47d8-b7fc-729de7acbf9b.svg",
+  reup: "https://www.figma.com/api/mcp/asset/f9cab50a-4f66-4945-94e8-a417d65c5177.svg",
+  comment: "https://www.figma.com/api/mcp/asset/e31d2e29-4411-40b2-9f2f-773140209f46.svg",
+  highlight: "https://www.figma.com/api/mcp/asset/48cf47bf-3ccb-4201-8550-617aa3cc2bc5.svg",
+  embed: "https://www.figma.com/api/mcp/asset/8a79651f-af25-4727-aa02-fbf14e0e1edd.svg",
+};
+
+const boomplayIcons = {
+  favourite: "https://www.figma.com/api/mcp/asset/c2da1a7f-a1e9-45bb-9cd6-bbdee538ef5d.svg",
+  download: "https://www.figma.com/api/mcp/asset/eddeae37-937d-4161-b640-f6ffa7cc4e44.svg",
+  share: "https://www.figma.com/api/mcp/asset/f3624aff-b054-40b2-a4e7-b922adb6250c.svg",
+  boost: "https://www.figma.com/api/mcp/asset/27f5fed6-ba69-42f5-afc7-162f90c8a8e9.svg",
+  playlist: "https://www.figma.com/api/mcp/asset/5f331206-019d-46d9-9e73-b309e07a262e.svg",
+  comment: "https://www.figma.com/api/mcp/asset/9d1b3e93-f8ae-45a2-a9b1-c66a16e678cb.svg",
+  unique: "https://www.figma.com/api/mcp/asset/9c7f0788-2ece-4ad8-921f-bdcc99fb61c5.svg",
+  multiple: "https://www.figma.com/api/mcp/asset/26e070b5-b896-42bf-888a-4de48d833449.svg",
+  interactive: "https://www.figma.com/api/mcp/asset/5ece4824-1c75-4a9c-ab08-a348a9c92444.svg",
+  report: "https://www.figma.com/api/mcp/asset/9a131686-6959-4c8b-b515-cc207501ca3c.svg",
+  video: "https://www.figma.com/api/mcp/asset/72e56968-62f5-45a4-b5b7-1c3d08cc57cb.svg",
+  embed: "https://www.figma.com/api/mcp/asset/df5cc09d-3468-475d-b622-479d5a528a9b.svg",
+};
+
+const spotifyIcons = {
+  liked: "https://www.figma.com/api/mcp/asset/aee9b360-a701-43db-a9d8-f0d891f0d18d.svg",
+  follow: "https://www.figma.com/api/mcp/asset/57aed7dd-b92b-46f9-96c3-632b891143ec.svg",
+  share: "https://www.figma.com/api/mcp/asset/c5508c9b-f1b9-4a8b-b309-2a260f5cfc07.svg",
+  boost: "https://www.figma.com/api/mcp/asset/5d6b2c3e-b484-4abe-a9a3-b7e9712d9e30.svg",
+  playlist: "https://www.figma.com/api/mcp/asset/b10b82d6-5200-49f6-8d9c-3f4f19c228d6.svg",
+  resave: "https://www.figma.com/api/mcp/asset/ecbc4250-fd02-45ff-a595-364ae86ae747.svg",
+  unique: "https://www.figma.com/api/mcp/asset/59ea721b-ac87-491c-8318-be5956e429de.svg",
+  multiple: "https://www.figma.com/api/mcp/asset/ecd98d52-2e41-444b-ae28-33cc8ab9e36c.svg",
+};
+
+const ytMusicIcons = {
+  like: "https://www.figma.com/api/mcp/asset/f2cf8460-35f0-48ce-bb0a-a7b9232968a4.svg",
+  download: "https://www.figma.com/api/mcp/asset/540757dc-f24e-43ac-9860-bb6d5ed7ea8a.svg",
+  share: "https://www.figma.com/api/mcp/asset/f02c1579-148b-44a0-bbd3-6d5164c49c1e.svg",
+  boost: "https://www.figma.com/api/mcp/asset/322b9347-f4e7-4cea-a479-b3c9e010d0bc.svg",
+  playlist: "https://www.figma.com/api/mcp/asset/91931262-9998-4230-814c-1408f8a4e18d.svg",
+  comment: "https://www.figma.com/api/mcp/asset/0e8e3f5b-ed58-425e-9902-24892212170e.svg",
+  unique: "https://www.figma.com/api/mcp/asset/5d9b4976-5d66-4392-9779-b1cb3c0fc3e5.svg",
+  multiple: "https://www.figma.com/api/mcp/asset/54216c47-b93b-473e-a70f-2839909148f4.svg",
+  subscribe: "https://www.figma.com/api/mcp/asset/90557594-5019-474e-aa98-45975cebe9e4.svg",
+  radio: "https://www.figma.com/api/mcp/asset/9811bc4a-4aca-418a-95f6-2bbee57ead57.svg",
+  engagement: "https://www.figma.com/api/mcp/asset/f640c0b3-c125-4711-8de9-e65cabeeb28c.svg",
+  library: "https://www.figma.com/api/mcp/asset/bd87a0e8-fc52-4114-8893-2fee69339a7b.svg",
+  interactive: "https://www.figma.com/api/mcp/asset/fd755c27-ace2-4ce4-8997-1dc505a0733e.svg",
+  report: "https://www.figma.com/api/mcp/asset/f01dc482-d9be-4553-acaa-a9fbe86a2a45.svg",
+  video: "https://www.figma.com/api/mcp/asset/a68577fe-c3d6-4ad8-9062-65cfdd5694f5.svg",
+  embed: "https://www.figma.com/api/mcp/asset/31218c67-dda3-4ea9-bf47-b2faf160c995.svg",
+};
+
+const linkedinReactions = [
+  ["👍 Like", 10], ["👏 Celebrate", 10], ["🫴 Support", 10],
+  ["❤️ Love", 10], ["😂 Funny", 15], ["💡 Insightful", 10],
+];
+
+const externalShareOptions = [
+  ["WhatsApp", 20], ["X (Twitter)", 20], ["Youtube", 20], ["Instagram", 20],
+  ["TikTok", 20], ["Telegram", 20], ["Snapchat", 20], ["Messenger", 20], ["Discord", 20],
+];
+
+const listenDurations = [["30 Secs", 10], ["45 Secs", 15], ["Full Song", 30]];
+const repeatFrequencies = [["3-5 Times/Week", 50], ["6-10 Times/Week", 100], ["11-15 Times/Week", 150], ["16-20 Times/Week", 200]];
+
 const reactions = [
   ["❤️ Love", 10],
   ["👍 Like", 10],
@@ -217,6 +306,108 @@ const platformConfigs = {
       task("Stitch my Video", "special-media", tiktokIcons.stitch, "peach", { specialTitle: "Stitch Video", specialCopy: "Get a Nano-Influencer to use your sound to create content on Youtube", mediaLabel: "Choose Video Part" }),
     ],
   },
+
+  linkedin: {
+    slug: "linkedin",
+    title: "I need LinkedIn:",
+    linkPlaceholder: "https://linkedIn.com/...",
+    grid: 4,
+    tasks: [
+      task("Like / Others", "reaction", linkedinIcons.like, "orange", { reactions: linkedinReactions, instructions: false }),
+      task("Followers", "gender", linkedinIcons.followers, "lavender", { options: [["Female Followers", 10], ["Male Followers", 10]] }),
+      task("Share on LinkedIn", "multi-share", linkedinIcons.share, "green", { options: [["Newsfeed", 10], ["Connection's DM", 20], ["Comment Session", 30]], formats: ["Video", "Images"] }),
+      task("Comments", "comment", linkedinIcons.comment, "sky", { surfaces: ["Post", "Comment Section"] }),
+      task("Live Participants", "live", linkedinIcons.live, "peach"),
+      task("Connections", "gender", linkedinIcons.connections, "lavender", { options: [["Female Connections", 10], ["Male Connections", 10]] }),
+      task("Save", "priced", linkedinIcons.save, "green", { unitCost: 10, specialTitle: "Save Post" }),
+      task("Video Viewers", "view", linkedinIcons.video, "navy"),
+      task("Report", "report", linkedinIcons.report, "red"),
+      task("External Shares", "multi-share", linkedinIcons.external, "blue", { options: externalShareOptions, formats: ["Video", "Images"] }),
+      task("Repost", "repost-options", linkedinIcons.repost, "green", { unitCost: 20 }),
+      task("Interactive Comments", "interactive", linkedinIcons.interactive, "orange", { unitCost: 30, surfaces: ["Post", "Comment Section"] }),
+    ],
+  },
+  audiomack: {
+    slug: "audiomack",
+    title: "I need Audiomack:",
+    linkPlaceholder: "https://audiomack.com/...",
+    grid: 4,
+    tasks: [
+      task("Add to Liked Songs", "priced", audiomackIcons.liked, "red", { unitCost: 100, specialTitle: "Add my Song to Liked Songs" }),
+      task("Follow Artist", "gender", audiomackIcons.follow, "lavender", { options: [["Female Followers", 10], ["Male Followers", 10]] }),
+      task("Share Song/Album", "multi-share", audiomackIcons.share, "green", { options: externalShareOptions, formats: ["Audio"] }),
+      task("Boost/React Album", "priced", audiomackIcons.boost, "orange", { unitCost: 20 }),
+      task("Add Song to Playlist", "priced", audiomackIcons.playlist, "green", { unitCost: 100 }),
+      task("Re-Save Song/Album", "priced", audiomackIcons.resave, "green", { unitCost: 10 }),
+      task("Unique Listen", "duration-choice", audiomackIcons.unique, "blue", { options: listenDurations }),
+      task("Multiple Listeners", "frequency-choice", audiomackIcons.multiple, "lavender", { options: repeatFrequencies }),
+      task("Re-Up my Song", "priced", audiomackIcons.reup, "blue", { unitCost: 20, specialTitle: "Re-post my Song" }),
+      task("Comments", "comment", audiomackIcons.comment, "sky", { surfaces: ["Song", "Comment Section"] }),
+      task("Highlight my Album/Playlist", "priced", audiomackIcons.highlight, "yellow", { unitCost: 20 }),
+      task("Embed my Songt my Song", "priced", audiomackIcons.embed, "blue", { unitCost: 20 }),
+    ],
+  },
+  boomplay: {
+    slug: "boomplay",
+    title: "I need Boomplay:",
+    linkPlaceholder: "https://boomplay.com/...",
+    grid: 4,
+    tasks: [
+      task("Add to Favourite", "favourite-type", boomplayIcons.favourite, "red", { unitCost: 100 }),
+      task("Download Song/Album", "priced", boomplayIcons.download, "blue", { unitCost: 20 }),
+      task("Share Song/Album", "multi-share", boomplayIcons.share, "green", { options: externalShareOptions, formats: ["Audio"] }),
+      task("Boost/React Album", "priced", boomplayIcons.boost, "orange", { unitCost: 20 }),
+      task("Add Song to Playlist", "priced", boomplayIcons.playlist, "green", { unitCost: 100 }),
+      task("Comment on my Song", "comment", boomplayIcons.comment, "sky", { surfaces: ["Song", "Comment Section"] }),
+      task("Unique Listen", "duration-choice", boomplayIcons.unique, "blue", { options: listenDurations }),
+      task("Multiple Listeners", "frequency-choice", boomplayIcons.multiple, "lavender", { options: repeatFrequencies }),
+      task("Interactive Comments", "interactive", boomplayIcons.interactive, "orange", { unitCost: 30, surfaces: ["Song", "Comment Section"] }),
+      task("Report", "report", boomplayIcons.report, "red"),
+      task("Video Viewers", "view", boomplayIcons.video, "navy"),
+      task("Embed my Songt my Song", "priced", boomplayIcons.embed, "blue", { unitCost: 20 }),
+    ],
+  },
+  spotify: {
+    slug: "spotify",
+    title: "I need Spotify:",
+    linkPlaceholder: "https://spotify.com/...",
+    grid: 4,
+    tasks: [
+      task("Add to Liked Songs", "priced", spotifyIcons.liked, "red", { unitCost: 100, specialTitle: "Add my Song to Liked Songs" }),
+      task("Follow Artist", "gender", spotifyIcons.follow, "lavender", { options: [["Female Followers", 10], ["Male Followers", 10]] }),
+      task("Share Song/Album", "multi-share", spotifyIcons.share, "green", { options: externalShareOptions, formats: ["Audio"] }),
+      task("Boost/React Album", "priced", spotifyIcons.boost, "orange", { unitCost: 20 }),
+      task("Add Song to Playlist", "priced", spotifyIcons.playlist, "green", { unitCost: 100 }),
+      task("Re-Save Song/Album", "priced", spotifyIcons.resave, "green", { unitCost: 10 }),
+      task("Unique Listen", "duration-choice", spotifyIcons.unique, "blue", { options: listenDurations }),
+      task("Multiple Listeners", "frequency-choice", spotifyIcons.multiple, "lavender", { options: repeatFrequencies }),
+    ],
+  },
+  "youtube-music": {
+    slug: "youtube-music",
+    title: "I need YouTube Music:",
+    linkPlaceholder: "https://ytubemusic.com/...",
+    grid: 4,
+    tasks: [
+      task("Like my Song", "reaction", ytMusicIcons.like, "red", { instructions: false }),
+      task("Download Song/Playlist", "priced", ytMusicIcons.download, "blue", { unitCost: 20 }),
+      task("Share Song/Album", "multi-share", ytMusicIcons.share, "green", { options: externalShareOptions, formats: ["Audio"] }),
+      task("Boost in Music/Album", "priced", ytMusicIcons.boost, "orange", { unitCost: 20 }),
+      task("Add Song to Playlist", "priced", ytMusicIcons.playlist, "green", { unitCost: 100 }),
+      task("Comment on my Song", "comment", ytMusicIcons.comment, "sky", { surfaces: ["Song", "Comment Section"] }),
+      task("Unique Listen", "duration-choice", ytMusicIcons.unique, "blue", { options: listenDurations }),
+      task("Multiple Listeners", "frequency-choice", ytMusicIcons.multiple, "lavender", { options: repeatFrequencies }),
+      task("Subscribe to an Artist", "music-subscribe", ytMusicIcons.subscribe, "red"),
+      task("Start a Radio with Song/Album", "priced", ytMusicIcons.radio, "blue", { unitCost: 10, specialTitle: "Start a Radio" }),
+      task("Comment Engagements", "comment-engagement", ytMusicIcons.engagement, "sky"),
+      task("Add Song to my Library", "priced", ytMusicIcons.library, "yellow", { unitCost: 10 }),
+      task("Interactive Comments", "interactive", ytMusicIcons.interactive, "orange", { unitCost: 30, surfaces: ["Song", "Comment Section"] }),
+      task("Report", "report", ytMusicIcons.report, "red"),
+      task("Video Viewers", "view", ytMusicIcons.video, "navy"),
+      task("Embed my Songt my Song", "priced", ytMusicIcons.embed, "blue", { unitCost: 20 }),
+    ],
+  },
+
 };
 
 const normalize = (value = "") => value.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
@@ -300,7 +491,7 @@ function UploadBox({ fileName, onFile, accept = "image/*", label = "Choose file"
   );
 }
 
-function TaskSpecificFields({ selectedTask, values, setValue, selectedReactions, setSelectedReactions, taskMedia, setTaskMedia }) {
+function TaskSpecificFields({ selectedTask, values, setValue, selectedReactions, setSelectedReactions, selectedOptions, setSelectedOptions, taskMedia, setTaskMedia }) {
   const mode = selectedTask.mode;
   const toggleReaction = (label) => {
     setSelectedReactions((current) => current.includes(label) ? current.filter((item) => item !== label) : [...current, label]);
@@ -311,10 +502,10 @@ function TaskSpecificFields({ selectedTask, values, setValue, selectedReactions,
       <section className="v2-stc-panel">
         <h2 className="v2-stc-subtitle">What kind of Reaction(s) do you want on your post</h2>
         <div className="v2-stc-choice-list">
-          {reactions.map(([label, cost]) => <CheckChoice key={label} label={label} cost={cost} checked={selectedReactions.includes(label)} onChange={() => toggleReaction(label)} />)}
+          {(selectedTask.reactions || reactions).map(([label, cost]) => <CheckChoice key={label} label={label} cost={cost} checked={selectedReactions.includes(label)} onChange={() => toggleReaction(label)} />)}
         </div>
         <div className="v2-stc-divider" />
-        <RadioButtons title="I want the reaction to happen on a:" values={["Post", "Comment Section"]} value={values.targetSurface} onChange={(value) => setValue("targetSurface", value)} />
+        <RadioButtons title="I want the reaction to happen on a:" values={selectedTask.surfaces || ["Post", "Comment Section"]} value={values.targetSurface} onChange={(value) => setValue("targetSurface", value)} />
       </section>
     );
   }
@@ -389,7 +580,7 @@ function TaskSpecificFields({ selectedTask, values, setValue, selectedReactions,
     return (
       <section className="v2-stc-panel">
         <div className="v2-stc-special-title"><h2>Interactive Comment Session</h2>{selectedTask.unitCost ? <p>(Cost {money(selectedTask.unitCost)})</p> : null}</div>
-        <RadioButtons title="I want the Interactive Comment Session to happen on a:" values={["Post", "Comment Section"]} value={values.targetSurface} onChange={(value) => setValue("targetSurface", value)} />
+        <RadioButtons title="I want the Interactive Comment Session to happen on a:" values={selectedTask.surfaces || ["Post", "Comment Section"]} value={values.targetSurface} onChange={(value) => setValue("targetSurface", value)} />
       </section>
     );
   }
@@ -442,6 +633,88 @@ function TaskSpecificFields({ selectedTask, values, setValue, selectedReactions,
     );
   }
 
+
+  if (mode === "gender") {
+    const toggle = (label) => setSelectedOptions((current) => current.includes(label) ? current.filter((item) => item !== label) : [...current, label]);
+    return (
+      <section className="v2-stc-panel">
+        <h2 className="v2-stc-subtitle">I want:</h2>
+        <div className="v2-stc-choice-list">{(selectedTask.options || []).map(([label, cost]) => <CheckChoice key={label} label={label} cost={cost} checked={selectedOptions.includes(label)} onChange={() => toggle(label)} />)}</div>
+      </section>
+    );
+  }
+
+  if (mode === "multi-share") {
+    const toggle = (label) => setSelectedOptions((current) => current.includes(label) ? current.filter((item) => item !== label) : [...current, label]);
+    return (
+      <section className="v2-stc-panel">
+        <div className="v2-stc-field">
+          <FieldHeader title="Where do you want us to Share your Content" />
+          <div className="v2-stc-choice-list">{(selectedTask.options || []).map(([label, cost]) => <CheckChoice key={label} label={label} cost={cost} checked={selectedOptions.includes(label)} onChange={() => toggle(label)} />)}</div>
+        </div>
+        <div className="v2-stc-field">
+          <FieldHeader title="Format" help="You can select one or more" />
+          <RadioButtons title="" values={selectedTask.formats || ["Video", "Images"]} value={values.format} onChange={(value) => setValue("format", value)} />
+        </div>
+      </section>
+    );
+  }
+
+  if (mode === "live") {
+    return <section className="v2-stc-panel"><RadioButtons title="I want:" values={["Participants on my Live (No Sharing)", "Participants on my Live (Share to Friends/Contacts)"]} value={values.want} onChange={(value) => setValue("want", value)} /></section>;
+  }
+
+  if (mode === "priced") {
+    return <section className="v2-stc-panel"><div className="v2-stc-special-title"><h2>{selectedTask.specialTitle || selectedTask.label}</h2>{selectedTask.unitCost ? <p>(Cost {money(selectedTask.unitCost)})</p> : null}</div></section>;
+  }
+
+  if (mode === "duration-choice" || mode === "frequency-choice") {
+    return (
+      <section className="v2-stc-panel">
+        <div className="v2-stc-special-title"><h2>{selectedTask.label}</h2>{mode === "duration-choice" ? <p>(Cost depends on duration)</p> : <p>(Cost depends on frequency)</p>}</div>
+        <h2 className="v2-stc-subtitle">Set Duration:</h2>
+        <div className="v2-stc-choice-list">{(selectedTask.options || []).map(([label, cost]) => <CheckChoice key={label} label={label} cost={cost} checked={values.durationChoice === label} onChange={() => setValue("durationChoice", values.durationChoice === label ? "" : label)} />)}</div>
+      </section>
+    );
+  }
+
+  if (mode === "favourite-type") {
+    return (
+      <section className="v2-stc-panel">
+        <RadioButtons title="Favourite type:" values={["Song", "Album", "Playlist", "Artist"]} value={values.favouriteType} onChange={(value) => setValue("favouriteType", value)} />
+        <div className="v2-stc-special-title"><h2>Add my Song to Liked Songs</h2><p>(Cost {money(selectedTask.unitCost || 100)})</p></div>
+      </section>
+    );
+  }
+
+  if (mode === "repost-options") {
+    return (
+      <section className="v2-stc-panel">
+        <div className="v2-stc-special-title"><h2>Re-post my post</h2><p>(Cost {money(selectedTask.unitCost || 20)})</p></div>
+        <RadioButtons title="Quantity" values={["Just Repost", "Repost with Thoughts"]} value={values.repostType} onChange={(value) => setValue("repostType", value)} />
+      </section>
+    );
+  }
+
+  if (mode === "music-subscribe") {
+    return (
+      <section className="v2-stc-panel">
+        <RadioButtons title="Choose the Subscriber Plan you want:" values={["Only Subscribe", "Subscribe and turn on Notifications"]} value={values.subscriberPlan} onChange={(value) => setValue("subscriberPlan", value)} />
+        <RadioButtons title="I want:" values={["Female Subscribers", "Subscribers"]} value={values.subscriberGender} onChange={(value) => setValue("subscriberGender", value)} />
+      </section>
+    );
+  }
+
+  if (mode === "comment-engagement") {
+    return (
+      <section className="v2-stc-panel">
+        <RadioButtons title="" values={["Like Comment", "Dislike Comment"]} value={values.commentAction} onChange={(value) => setValue("commentAction", value)} />
+        <div className="v2-stc-field"><FieldHeader title="Commenter’s Handle" /><input className="v2-stc-input" value={values.commenterHandle} onChange={(event) => setValue("commenterHandle", event.target.value)} placeholder="type here" /></div>
+        <div className="v2-stc-field"><FieldHeader title="The Comment that needs Reaction." /><textarea className="v2-stc-textarea" value={values.reportComment} onChange={(event) => setValue("reportComment", event.target.value)} placeholder="type here" /></div>
+      </section>
+    );
+  }
+
   return null;
 }
 
@@ -454,6 +727,7 @@ export default function V2SocialTaskCampaign() {
   const [selectedTaskIndex, setSelectedTaskIndex] = useState(initialIndex);
   const selectedTask = platform.tasks[selectedTaskIndex];
   const [selectedReactions, setSelectedReactions] = useState([]);
+  const [selectedOptions, setSelectedOptions] = useState([]);
   const [values, setValues] = useState({
     targetSurface: "Post",
     subscriberPlan: "",
@@ -476,6 +750,11 @@ export default function V2SocialTaskCampaign() {
     mediaEnd: "",
     contentType: "",
     goal: "",
+    durationChoice: "",
+    favouriteType: "",
+    subscriberGender: "",
+    commentAction: "",
+    repostType: "",
   });
   const [pageAbout, setPageAbout] = useState("");
   const [link, setLink] = useState("");
@@ -497,17 +776,28 @@ export default function V2SocialTaskCampaign() {
 
   const unitCost = useMemo(() => {
     if (selectedTask.mode === "reaction") {
-      return reactions.filter(([label]) => selectedReactions.includes(label)).reduce((sum, [, cost]) => sum + cost, 0);
+      const pool = selectedTask.reactions || reactions;
+      return pool.filter(([label]) => selectedReactions.includes(label)).reduce((sum, [, cost]) => sum + cost, 0);
+    }
+    if (selectedTask.mode === "gender" || selectedTask.mode === "multi-share") {
+      return (selectedTask.options || []).filter(([label]) => selectedOptions.includes(label)).reduce((sum, [, cost]) => sum + cost, 0);
+    }
+    if (selectedTask.mode === "duration-choice" || selectedTask.mode === "frequency-choice") {
+      return (selectedTask.options || []).find(([label]) => label === values.durationChoice)?.[1] || 0;
+    }
+    if (selectedTask.mode === "music-subscribe") {
+      return values.subscriberPlan === "Subscribe and turn on Notifications" ? 20 : values.subscriberPlan ? 10 : 0;
     }
     return selectedTask.unitCost || 0;
-  }, [selectedTask, selectedReactions]);
+  }, [selectedTask, selectedReactions, selectedOptions, values.durationChoice, values.subscriberPlan]);
 
   const totalCost = useMemo(() => Number(quantity || 0) * unitCost, [quantity, unitCost]);
 
   const selectTask = (index) => {
     setSelectedTaskIndex(index);
     setSelectedReactions([]);
-    setValues((current) => ({ ...current, targetSurface: "Post" }));
+    setSelectedOptions([]);
+    setValues((current) => ({ ...current, targetSurface: "Post", durationChoice: "", favouriteType: "", subscriberPlan: "", subscriberGender: "", commentAction: "", repostType: "" }));
     const nextUrl = new URL(window.location.href);
     nextUrl.searchParams.set("task", normalize(platform.tasks[index].label));
     window.history.replaceState({}, "", `${nextUrl.pathname}${nextUrl.search}`);
@@ -570,7 +860,7 @@ export default function V2SocialTaskCampaign() {
         </section>
 
         <form className="v2-stc-fields" onSubmit={submit}>
-          <TaskSpecificFields selectedTask={selectedTask} values={values} setValue={setValue} selectedReactions={selectedReactions} setSelectedReactions={setSelectedReactions} taskMedia={taskMedia} setTaskMedia={setTaskMedia} />
+          <TaskSpecificFields selectedTask={selectedTask} values={values} setValue={setValue} selectedReactions={selectedReactions} setSelectedReactions={setSelectedReactions} selectedOptions={selectedOptions} setSelectedOptions={setSelectedOptions} taskMedia={taskMedia} setTaskMedia={setTaskMedia} />
 
           <section className="v2-stc-panel">
             <div className="v2-stc-field"><FieldHeader title="What is your page/profile about" /><input className="v2-stc-input" value={pageAbout} onChange={(event) => setPageAbout(event.target.value)} placeholder="type here" maxLength={50} /><p className="v2-stc-meta">{pageAbout.length}/50</p></div>
