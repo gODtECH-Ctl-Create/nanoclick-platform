@@ -25,7 +25,8 @@
 .v2-register-eye img{width:18px;height:18px;display:block}
 .v2-register-terms{width:100%;height:28px;display:flex;align-items:center;gap:10px;padding:3px 0 8px;color:var(--ni-black-600);font:400 14px/1.2 var(--ni-font-body);letter-spacing:-.56px;white-space:nowrap;cursor:pointer}
 .v2-register-terms input{position:absolute;opacity:0;pointer-events:none}
-.v2-register-checkbox{width:16px;height:16px;flex:0 0 16px;border:1px solid var(--ni-primary);border-radius:4px;background:var(--ni-white);display:grid;place-items:center;color:var(--ni-primary);font-size:11px;line-height:1}
+.v2-register-checkbox{width:16px;height:16px;flex:0 0 16px;border:2px solid var(--ni-primary);border-radius:4px;background:var(--ni-white);display:grid;place-items:center;color:var(--ni-primary);font-family:Arial,sans-serif;font-size:13px;font-weight:900;line-height:1;transition:background-color 120ms ease,color 120ms ease}
+.v2-register-terms input:checked+.v2-register-checkbox{background:var(--ni-primary);color:#fff}
 .v2-register-terms a{color:#e54f1e;text-decoration:underline;text-underline-position:from-font}
 .v2-register-submit{width:100%;height:48px;min-height:48px;border:0;border-radius:24px;background:var(--ni-primary);color:var(--ni-white);padding:14px 22px;font:400 14px/1.2 var(--ni-font-body);letter-spacing:-.56px;text-align:center;cursor:pointer}
 .v2-register-signin{width:100%;height:17px;margin:0;text-align:center;color:var(--ni-black-600);font:400 14px/1.2 var(--ni-font-body);letter-spacing:-.56px;white-space:nowrap}
