@@ -1,6 +1,7 @@
 import React from "react";
 import { Button } from "../components/ui/Button.jsx";
 import "./v2-campaign.css";
+import "./v2-campaign-populated.css";
 
 const assets = {
   brand: "https://www.figma.com/api/mcp/asset/9f7b282b-9d0e-4d3e-a76e-76a75ba1e4d9.svg",
@@ -33,21 +34,16 @@ const assets = {
   website: "https://www.figma.com/api/mcp/asset/d0ae50d4-5881-4496-8411-ab42e25af42b.svg",
   crypto: "https://www.figma.com/api/mcp/asset/6ecaca18-944a-4ee1-882e-7e7f14f804d3.svg",
   ideas: "https://www.figma.com/api/mcp/asset/e47a85de-2ed4-442d-bb77-34d4c99818b1.svg",
+  manageX: "https://www.figma.com/api/mcp/asset/33ce1720-401e-4bb4-8236-4a819fd9d02e.svg",
+  manageLink: "https://www.figma.com/api/mcp/asset/645788d3-e152-4370-823b-ccb1de7d44fb.svg",
+  manageEdit: "https://www.figma.com/api/mcp/asset/5a944ecc-963d-4e51-8e3e-db99b33ee1be.svg",
+  manageTrash: "https://www.figma.com/api/mcp/asset/30b09481-c4dd-4cda-a7f9-13889f1731a9.svg",
 };
 
 const platforms = [
-  ["Facebook", assets.facebook],
-  ["Youtube", assets.youtube],
-  ["Twitter", assets.twitter],
-  ["WhatsApp", assets.whatsapp],
-  ["Instagram", assets.instagram],
-  ["Telegram", assets.telegram],
-  ["TikTok", assets.tiktok],
-  ["LinkedIn", assets.linkedin],
-  ["Audiomack", assets.audiomack],
-  ["Spotify", assets.spotify],
-  ["BoomPlay", assets.boomplay],
-  ["YT Music", assets.ytmusic],
+  ["Facebook", assets.facebook], ["Youtube", assets.youtube], ["Twitter", assets.twitter], ["WhatsApp", assets.whatsapp],
+  ["Instagram", assets.instagram], ["Telegram", assets.telegram], ["TikTok", assets.tiktok], ["LinkedIn", assets.linkedin],
+  ["Audiomack", assets.audiomack], ["Spotify", assets.spotify], ["BoomPlay", assets.boomplay], ["YT Music", assets.ytmusic],
 ];
 
 const singleTasks = [
@@ -58,21 +54,11 @@ const singleTasks = [
 ];
 
 function Brand() {
-  return (
-    <a className="v2-campaign-brand" href="/" aria-label="The Nano Influencers home">
-      <img src={assets.brand} alt="" />
-      <span>The Nano Influencers</span>
-    </a>
-  );
+  return <a className="v2-campaign-brand" href="/" aria-label="The Nano Influencers home"><img src={assets.brand} alt="" /><span>The Nano Influencers</span></a>;
 }
 
 function SidebarItem({ href, icon, label, active = false }) {
-  return (
-    <a className={`v2-campaign-sidebar-item${active ? " is-active" : ""}`} href={href}>
-      <img src={icon} alt="" />
-      <span>{label}</span>
-    </a>
-  );
+  return <a className={`v2-campaign-sidebar-item${active ? " is-active" : ""}`} href={href}><img src={icon} alt="" /><span>{label}</span></a>;
 }
 
 function Sidebar() {
@@ -116,33 +102,12 @@ function TopHeader() {
 function ServiceCard({ type }) {
   const wom = type === "wom";
   const rows = wom
-    ? [
-        ["Purpose", "Explode awareness & Conversions on WhatsApp"],
-        ["Delivery", "Nano-Influencers deliver your campaigns naturally through WhatsApp DMs & group chats to your targeted audiences that are most likely to convert."],
-        ["Platform", "WhatsApp, Telegram & Messenger"],
-        ["Best For", "Product Launch, Massive Awareness, Event Promotion etc."],
-      ]
-    : [
-        ["Purpose", "Any issues with your campaigns or account? Our support team is ready to help."],
-        ["Delivery", "Assigned followers in your niche who follow permanently & continually engage with your content while sharing on WhatsApp for more audience"],
-        ["Platform", "Instagram, Facebook, X(Twitter), YouTube, LinkedIn, and TikTok"],
-        ["Best For", "Creators, Brands, Influencers, Businesses and anyone seeking constant visibility."],
-      ];
-
+    ? [["Purpose", "Explode awareness & Conversions on WhatsApp"], ["Delivery", "Nano-Influencers deliver your campaigns naturally through WhatsApp DMs & group chats to your targeted audiences that are most likely to convert."], ["Platform", "WhatsApp, Telegram & Messenger"], ["Best For", "Product Launch, Massive Awareness, Event Promotion etc."]]
+    : [["Purpose", "Any issues with your campaigns or account? Our support team is ready to help."], ["Delivery", "Assigned followers in your niche who follow permanently & continually engage with your content while sharing on WhatsApp for more audience"], ["Platform", "Instagram, Facebook, X(Twitter), YouTube, LinkedIn, and TikTok"], ["Best For", "Creators, Brands, Influencers, Businesses and anyone seeking constant visibility."]];
   return (
     <article className={`v2-campaign-service-card${wom ? " is-wom" : " is-growth"}`}>
-      <div className="v2-campaign-service-title">
-        <span className="v2-campaign-service-icon"><img src={wom ? assets.wordOfMouth : assets.trend} alt="" /></span>
-        <h2>{wom ? "Word of Mouth" : "Engaged Growth"}</h2>
-      </div>
-      <div className="v2-campaign-service-facts">
-        {rows.map(([label, value]) => (
-          <div className="v2-campaign-service-fact" key={label}>
-            <span>{label}</span>
-            <p>{value}</p>
-          </div>
-        ))}
-      </div>
+      <div className="v2-campaign-service-title"><span className="v2-campaign-service-icon"><img src={wom ? assets.wordOfMouth : assets.trend} alt="" /></span><h2>{wom ? "Word of Mouth" : "Engaged Growth"}</h2></div>
+      <div className="v2-campaign-service-facts">{rows.map(([label, value]) => <div className="v2-campaign-service-fact" key={label}><span>{label}</span><p>{value}</p></div>)}</div>
       <Button className="v2-campaign-start">Start Now</Button>
       <button className="v2-campaign-video-link" type="button">Watch Video for more info about this Service</button>
     </article>
@@ -150,48 +115,54 @@ function ServiceCard({ type }) {
 }
 
 function PlatformCard({ name, icon }) {
-  return (
-    <button className="v2-campaign-platform-card" type="button">
-      <img src={icon} alt="" />
-      <span>{name}</span>
-    </button>
-  );
+  return <button className="v2-campaign-platform-card" type="button"><img src={icon} alt="" /><span>{name}</span></button>;
 }
 
 function CustomTasks() {
   return (
     <section className="v2-campaign-panel v2-campaign-custom">
-      <div className="v2-campaign-panel-heading is-split">
-        <div><h2>Custom Tasks</h2><p>Choose the right service to grow your brand and reach your audience.</p></div>
-        <button type="button">Watch Video for more info about this Service</button>
-      </div>
+      <div className="v2-campaign-panel-heading is-split"><div><h2>Custom Tasks</h2><p>Choose the right service to grow your brand and reach your audience.</p></div><button type="button">Watch Video for more info about this Service</button></div>
       <div className="v2-campaign-label">Select Platform</div>
-      <div className="v2-campaign-platform-grid">
-        {platforms.map(([name, icon]) => <PlatformCard key={name} name={name} icon={icon} />)}
-      </div>
+      <div className="v2-campaign-platform-grid">{platforms.map(([name, icon]) => <PlatformCard key={name} name={name} icon={icon} />)}</div>
     </section>
   );
 }
 
 function CustomTaskBanner() {
+  return <section className="v2-campaign-task-banner"><span className="v2-campaign-task-icon"><img src={assets.taskBolt} alt="" /></span><div><h2>Great for Multiple task creation across any type of Platform.</h2><p>Build custom campaigns tailored to your exact goals.</p></div><Button className="v2-campaign-custom-button">Create Custom Task</Button></section>;
+}
+
+function CompactManageRecord({ title, linked = false }) {
   return (
-    <section className="v2-campaign-task-banner">
-      <span className="v2-campaign-task-icon"><img src={assets.taskBolt} alt="" /></span>
-      <div><h2>Great for Multiple task creation across any type of Platform.</h2><p>Build custom campaigns tailored to your exact goals.</p></div>
-      <Button className="v2-campaign-custom-button">Create Custom Task</Button>
-    </section>
+    <article className="v2-campaign-compact-record">
+      <div className="v2-campaign-compact-head"><span><i><img src={assets.trend} alt="" /></i><strong>Engaged Growth</strong></span><time>Created: 7/12/25 · Time: 7:35pm</time></div>
+      <div className="v2-campaign-compact-main">
+        <div className={`v2-campaign-compact-service${linked ? " is-link" : ""}`}>
+          {linked ? <span className="v2-campaign-compact-link"><img src={assets.manageLink} alt="" /></span> : <img src={assets.manageX} alt="" />}
+          <strong>{title}</strong>
+        </div>
+        <div className="v2-campaign-compact-actions">
+          <button className="is-edit" type="button"><img src={assets.manageEdit} alt="" />Edit</button>
+          <button className="is-delete" type="button"><img src={assets.manageTrash} alt="" />Delete</button>
+        </div>
+      </div>
+    </article>
   );
 }
 
-function ManageCampaigns() {
+function ManageCampaigns({ active }) {
   return (
-    <section className="v2-campaign-panel v2-campaign-manage">
+    <section className={`v2-campaign-panel v2-campaign-manage${active ? " is-populated" : ""}`}>
       <div className="v2-campaign-panel-heading"><h2>Manage Campaigns</h2></div>
-      <div className="v2-campaign-empty">
-        <img src={assets.emptyCampaign} alt="" />
-        <h3>You have no campaign available</h3>
-        <Button>Create New Campaign</Button>
-      </div>
+      {active ? (
+        <div className="v2-campaign-populated-list">
+          <CompactManageRecord title="Twitter Repost" />
+          <CompactManageRecord title="Chisom's Page Link 1" linked />
+          <Button href="/campaigns/manage" className="v2-campaign-manage-button">Go to Campaign Management</Button>
+        </div>
+      ) : (
+        <div className="v2-campaign-empty"><img src={assets.emptyCampaign} alt="" /><h3>You have no campaign available</h3><Button>Create New Campaign</Button></div>
+      )}
     </section>
   );
 }
@@ -201,46 +172,27 @@ function SingleTasks() {
     <section className="v2-campaign-panel v2-campaign-single">
       <div className="v2-campaign-panel-heading"><h2>Single Tasks</h2><p>Premium tools designed for specific business needs</p></div>
       <div className="v2-campaign-label">Select Service</div>
-      <div className="v2-campaign-single-grid">
-        {singleTasks.map(([name, icon]) => (
-          <button className="v2-campaign-single-card" type="button" key={name}>
-            <img src={icon} alt="" />
-            <span>{name}</span>
-          </button>
-        ))}
-      </div>
+      <div className="v2-campaign-single-grid">{singleTasks.map(([name, icon]) => <button className="v2-campaign-single-card" type="button" key={name}><img src={icon} alt="" /><span>{name}</span></button>)}</div>
     </section>
   );
 }
 
 function MobileBottomNav() {
-  return (
-    <nav className="v2-campaign-bottom-nav" aria-label="Mobile navigation">
-      <a href="/dashboard"><img src={assets.dashboard} alt="" /></a>
-      <a href="/wallet"><img src={assets.wallet} alt="" /></a>
-      <a className="is-active" href="/campaigns"><img src={assets.campaign} alt="" /><span>Campaigns</span></a>
-      <a href="#analytics"><img src={assets.analytics} alt="" /></a>
-    </nav>
-  );
+  return <nav className="v2-campaign-bottom-nav" aria-label="Mobile navigation"><a href="/dashboard"><img src={assets.dashboard} alt="" /></a><a href="/wallet"><img src={assets.wallet} alt="" /></a><a className="is-active" href="/campaigns"><img src={assets.campaign} alt="" /><span>Campaigns</span></a><a href="#analytics"><img src={assets.analytics} alt="" /></a></nav>;
 }
 
 export default function V2Campaign() {
+  const activeState = new URLSearchParams(window.location.search).get("state") === "active";
   return (
     <div className="v2-campaign-page">
       <Sidebar />
       <main className="v2-campaign-main">
         <TopHeader />
-        <header className="v2-campaign-page-heading">
-          <h1>Campaign Services</h1>
-          <p>Choose the right service to grow your brand and reach your audience.</p>
-        </header>
-        <section className="v2-campaign-service-grid">
-          <ServiceCard type="growth" />
-          <ServiceCard type="wom" />
-        </section>
+        <header className="v2-campaign-page-heading"><h1>Campaign Services</h1><p>Choose the right service to grow your brand and reach your audience.</p></header>
+        <section className="v2-campaign-service-grid"><ServiceCard type="growth" /><ServiceCard type="wom" /></section>
         <CustomTasks />
         <CustomTaskBanner />
-        <ManageCampaigns />
+        <ManageCampaigns active={activeState} />
         <SingleTasks />
       </main>
       <MobileBottomNav />
