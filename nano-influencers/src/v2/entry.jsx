@@ -11,6 +11,7 @@ import { V2Wallet, V2WalletSuccess } from "./pages/V2Wallet.jsx";
 import V2Settings from "./pages/V2Settings.jsx";
 import V2HelpSupport from "./pages/V2HelpSupport.jsx";
 import V2Campaign from "./pages/V2Campaign.jsx";
+import V2SelectPackage from "./pages/V2SelectPackage.jsx";
 import {
   V2ManageCampaign,
   V2OngoingCampaigns,
@@ -68,6 +69,8 @@ if (pathname === "/" || pathname === "") {
   renderV2(<V2Settings />);
 } else if (pathname === "/help-support") {
   renderV2(<V2HelpSupport />);
+} else if (pathname === "/campaigns/select-package") {
+  renderV2(<V2SelectPackage />);
 } else if (pathname === "/campaigns/manage") {
   renderV2(<V2ManageCampaign />);
 } else if (pathname === "/campaigns/ongoing") {
