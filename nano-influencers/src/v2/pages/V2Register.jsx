@@ -1,0 +1,106 @@
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import "./v2-register.css";
+
+const assets = {
+  brandIcon: "https://www.figma.com/api/mcp/asset/c7328e6a-3ba7-4c2d-88e5-956c51714eb6.svg",
+  google: "https://www.figma.com/api/mcp/asset/707f30f5-7374-4deb-af67-4fe0421d1b11.svg",
+  facebook: "https://www.figma.com/api/mcp/asset/9411d5eb-cc57-49c2-8d41-591a9aa37938.svg",
+  eyeSlash: "https://www.figma.com/api/mcp/asset/fd58d362-f175-4464-97ae-b3a5d148c2d0.svg",
+};
+
+function Brand() {
+  return (
+    <Link className="v2-register-brand" to="/" aria-label="The Nano Influencers home">
+      <img src={assets.brandIcon} alt="" />
+      <span>The Nano Influencers</span>
+    </Link>
+  );
+}
+
+function OAuthButton({ provider, icon }) {
+  return (
+    <button className="v2-register-oauth-button" type="button">
+      <img src={icon} alt="" />
+      <span>Continue with {provider}</span>
+    </button>
+  );
+}
+
+function RegisterField({ label, placeholder, type = "text", autoComplete, password = false }) {
+  const [visible, setVisible] = useState(false);
+  const inputType = password ? (visible ? "text" : "password") : type;
+
+  return (
+    <label className="v2-register-field">
+      <span>{label}</span>
+      <span className="v2-register-input-shell">
+        <input type={inputType} placeholder={placeholder} autoComplete={autoComplete} />
+        {password && (
+          <button
+            className="v2-register-eye"
+            type="button"
+            aria-label={visible ? "Hide password" : "Show password"}
+            onClick={() => setVisible(value => !value)}
+          >
+            <img src={assets.eyeSlash} alt="" />
+          </button>
+        )}
+      </span>
+    </label>
+  );
+}
+
+export default function V2Register() {
+  const [accepted, setAccepted] = useState(false);
+
+  return (
+    <main className="ni-v2 v2-register-page">
+      <div className="v2-register-container">
+        <header className="v2-register-header">
+          <Brand />
+          <div className="v2-register-heading-copy">
+            <h1>Create your account</h1>
+            <p>Start growing your business today — free forever.</p>
+          </div>
+        </header>
+
+        <div className="v2-register-oauth">
+          <OAuthButton provider="Google" icon={assets.google} />
+          <OAuthButton provider="Facebook" icon={assets.facebook} />
+        </div>
+
+        <div className="v2-register-divider" aria-hidden="true">
+          <i />
+          <span>or sign up with email</span>
+          <i />
+        </div>
+
+        <form className="v2-register-form" onSubmit={(event) => event.preventDefault()}>
+          <div className="v2-register-name-row">
+            <RegisterField label="First Name" placeholder="First Name" autoComplete="given-name" />
+            <RegisterField label="Last Name" placeholder="Last Name" autoComplete="family-name" />
+          </div>
+
+          <RegisterField label="Email" placeholder="you@example.com" type="email" autoComplete="email" />
+          <RegisterField label="Password" placeholder="Min. 8 characters" autoComplete="new-password" password />
+          <RegisterField label="Confirm Password" placeholder="Re-enter your password" autoComplete="new-password" password />
+
+          <label className="v2-register-terms">
+            <input type="checkbox" checked={accepted} onChange={(event) => setAccepted(event.target.checked)} />
+            <span className="v2-register-checkbox" aria-hidden="true">{accepted ? "✓" : ""}</span>
+            <span>
+              I agree to the <a href="#privacy">Privacy Policy</a> and <a href="#terms">Terms of Service</a>
+            </span>
+          </label>
+
+          <button className="v2-register-submit" type="submit">Create Account</button>
+        </form>
+
+        <p className="v2-register-signin">
+          Already have an account? <Link to="/login">Sign in</Link>
+        </p>
+      </div>
+    </main>
+  );
+}
