@@ -129,7 +129,7 @@ function CustomTasks() {
 }
 
 function CustomTaskBanner() {
-  return <section className="v2-campaign-task-banner"><span className="v2-campaign-task-icon"><img src={assets.taskBolt} alt="" /></span><div><h2>Great for Multiple task creation across any type of Platform.</h2><p>Build custom campaigns tailored to your exact goals.</p></div><Button className="v2-campaign-custom-button">Create Custom Task</Button></section>;
+  return <section className="v2-campaign-task-banner"><span className="v2-campaign-task-icon"><img src={assets.taskBolt} alt="" /></span><div><h2>Great for Multiple task creation across any type of Platform.</h2><p>Build custom campaigns tailored to your exact goals.</p></div><Button className="v2-campaign-custom-button" to="/campaigns/custom-task">Create Custom Task</Button></section>;
 }
 
 function CompactManageRecord({ title, linked = false }) {
