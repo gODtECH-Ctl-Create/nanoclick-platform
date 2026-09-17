@@ -10,6 +10,7 @@ import { V2FreeTrial, V2WeeklyGiveaway } from "./pages/V2DashboardExtras.jsx";
 import { V2Wallet, V2WalletSuccess } from "./pages/V2Wallet.jsx";
 import V2Settings from "./pages/V2Settings.jsx";
 import V2HelpSupport from "./pages/V2HelpSupport.jsx";
+import V2Campaign from "./pages/V2Campaign.jsx";
 // Keep the comparison fixes in the V2 bundle so preview deployments always include them.
 import "./pages/v2-dashboard-fixes.css";
 import "./pages/v2-wallet-fixes.css";
@@ -60,6 +61,8 @@ if (pathname === "/" || pathname === "") {
   renderV2(<V2Settings />);
 } else if (pathname === "/help-support") {
   renderV2(<V2HelpSupport />);
+} else if (pathname === "/campaigns") {
+  renderV2(<V2Campaign />);
 } else if (pathname === "/dashboard" || pathname === "/app") {
   renderV2(<V2Dashboard />);
 } else {
