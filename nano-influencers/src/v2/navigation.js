@@ -12,6 +12,7 @@ const socialCampaignRoutes = {
   Facebook: "/campaigns/create/facebook",
   Youtube: "/campaigns/create/youtube",
   Twitter: "/campaigns/create/x",
+  WhatsApp: "/campaigns/create/whatsapp",
   Instagram: "/campaigns/create/instagram",
   TikTok: "/campaigns/create/tiktok",
 };
