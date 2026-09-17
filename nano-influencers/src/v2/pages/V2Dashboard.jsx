@@ -23,6 +23,8 @@ const assets = {
   megaphone: "https://www.figma.com/api/mcp/asset/be58014c-dbaf-463d-ba60-b41989c8a69e.svg",
   chartGrid: "https://www.figma.com/api/mcp/asset/cd8a41a4-af7a-40e5-ba71-3251b088a8a5.svg",
   chartLines: "https://www.figma.com/api/mcp/asset/83cd86cd-0b1f-468b-9541-7ef66a05ec0a.svg",
+  emptyChartLines: "https://www.figma.com/api/mcp/asset/fedbc724-e8e0-4cd2-984e-eabac588651e.svg",
+  emptyActivity: "https://www.figma.com/api/mcp/asset/52588fde-018a-4481-8638-82a967d0eed6.svg",
   add: "https://www.figma.com/api/mcp/asset/b94e9c6a-82c1-47fe-978b-0058e8c78b0b.svg",
   refer: "https://www.figma.com/api/mcp/asset/227d3e9c-deb3-423a-9994-8e1c147f4819.svg",
   gift: "https://www.figma.com/api/mcp/asset/af291479-e8dc-4b0c-8904-7371a4568b02.svg",
@@ -45,8 +47,8 @@ const metrics = [
 const quickActions = [
   { title: "Add Funds", desc: "Top up your wallet", tone: "orange", icon: assets.add },
   { title: "Refer & Earn", desc: "Earn 2% per referral", tone: "green", icon: assets.refer },
-  { title: "Win Gifts", desc: "1% cashback + weekly raffle", tone: "yellow", icon: assets.gift },
-  { title: "Try for Free", desc: "2 free trial weekly", tone: "lavender", icon: assets.unlock },
+  { title: "Win Gifts", desc: "1% cashback + weekly raffle", tone: "yellow", icon: assets.gift, href: "/dashboard/giveaway" },
+  { title: "Try for Free", desc: "2 free trial weekly", tone: "lavender", icon: assets.unlock, href: "/dashboard/free-trial" },
 ];
 
 const activities = [
@@ -102,14 +104,22 @@ function Sidebar() {
   );
 }
 
-function TopHeader() {
+function TopHeader({ profileOpen, onProfileClick }) {
   return (
     <header className="v2-dashboard-topbar">
       <Brand />
       <p className="v2-dashboard-welcome desktop-welcome">Welcome Back 👋</p>
       <div className="v2-dashboard-user">
         <button className="v2-dashboard-notification" type="button" aria-label="Notifications"><img src={assets.notification} alt="" /></button>
-        <div className="v2-dashboard-profile"><img src={assets.profile} alt="Adaeze O." /><span>Adaeze O.</span></div>
+        <button
+          className={`v2-dashboard-profile${profileOpen ? " is-open" : ""}`}
+          type="button"
+          aria-label="Open profile menu"
+          aria-expanded={profileOpen}
+          onClick={onProfileClick}
+        >
+          <img src={assets.profile} alt="Adaeze O." /><span>Adaeze O.</span>
+        </button>
       </div>
     </header>
   );
@@ -158,7 +168,7 @@ function LaunchBanner() {
   );
 }
 
-function AnalyticsChart() {
+function AnalyticsChart({ emptyState = false }) {
   const [period, setPeriod] = useState("Weekly");
   return (
     <section className="v2-dashboard-analytics-card desktop-only">
@@ -170,7 +180,7 @@ function AnalyticsChart() {
       </div>
       <div className="v2-dashboard-chart">
         <div className="v2-dashboard-y-axis"><span>2200</span><span>1650</span><span>1100</span><span>550</span><span>0</span></div>
-        <div className="v2-dashboard-chart-plot"><img className="grid" src={assets.chartGrid} alt="" /><img className="lines" src={assets.chartLines} alt="Campaign analytics lines" /></div>
+        <div className="v2-dashboard-chart-plot"><img className="grid" src={assets.chartGrid} alt="" /><img className={`lines${emptyState ? " is-empty" : ""}`} src={emptyState ? assets.emptyChartLines : assets.chartLines} alt="Campaign analytics lines" /></div>
         <div className="v2-dashboard-x-axis">{[1,2,3,4,5,6,7].map((day) => <span key={day}>Day {day}</span>)}</div>
       </div>
       <div className="v2-dashboard-chart-legend"><span><i className="yellow" />Engagements</span><span><i className="green" />Impressions</span><span><i className="red" />Reach</span></div>
@@ -178,35 +188,49 @@ function AnalyticsChart() {
   );
 }
 
+function QuickActionItem({ action }) {
+  const content = (
+    <>
+      <span className={`v2-dashboard-icon-circle is-${action.tone}`}><img src={action.icon} alt="" /></span>
+      <span className="v2-dashboard-quick-copy"><strong>{action.title}</strong><small>{action.desc}</small></span>
+      <img className="v2-dashboard-chevron desktop-only" src={assets.chevron} alt="" />
+    </>
+  );
+  if (action.href) return <a className="v2-dashboard-quick-item" href={action.href}>{content}</a>;
+  return <button className="v2-dashboard-quick-item" type="button">{content}</button>;
+}
+
 function QuickActions() {
   return (
     <section className="v2-dashboard-quick-card">
       <h2>Quick Actions</h2>
       <div className="v2-dashboard-quick-list">
-        {quickActions.map((action) => (
-          <button key={action.title} className="v2-dashboard-quick-item" type="button">
-            <span className={`v2-dashboard-icon-circle is-${action.tone}`}><img src={action.icon} alt="" /></span>
-            <span className="v2-dashboard-quick-copy"><strong>{action.title}</strong><small>{action.desc}</small></span>
-            <img className="v2-dashboard-chevron desktop-only" src={assets.chevron} alt="" />
-          </button>
-        ))}
+        {quickActions.map((action) => <QuickActionItem key={action.title} action={action} />)}
       </div>
     </section>
   );
 }
 
-function LatestActivity() {
+function LatestActivity({ emptyState = false }) {
   return (
-    <section className="v2-dashboard-activity-card">
-      <div className="v2-dashboard-section-heading"><h2>Latest Activity</h2><button type="button">Show all</button></div>
-      <div className="v2-dashboard-activity-list">
-        {activities.map((activity, index) => (
-          <div className="v2-dashboard-activity-row" key={`${activity.title}-${index}`}>
-            <div className="v2-dashboard-activity-main"><span className={`v2-dashboard-activity-icon is-${activity.tone}`}><img src={activity.icon} alt="" /></span><span><strong>{activity.title}</strong>{activity.subtitle && <small>{activity.subtitle}</small>}</span></div>
-            <div className="v2-dashboard-activity-meta">{activity.amount && <strong>{activity.amount}</strong>}<small>{activity.time}</small></div>
-          </div>
-        ))}
-      </div>
+    <section className={`v2-dashboard-activity-card${emptyState ? " is-empty" : ""}`}>
+      <div className="v2-dashboard-section-heading"><h2>Latest Activity</h2><button className={emptyState ? "is-muted" : ""} type="button">Show all</button></div>
+      {emptyState ? (
+        <div className="v2-dashboard-empty-activity">
+          <img src={assets.emptyActivity} alt="" />
+          <h3>You have no activity</h3>
+          <Button>Start a Campaign</Button>
+        </div>
+      ) : (
+        <div className="v2-dashboard-activity-list">
+          {activities.map((activity, index) => (
+            <div className="v2-dashboard-activity-row" key={`${activity.title}-${index}`}>
+              <div className="v2-dashboard-activity-main"><span className={`v2-dashboard-activity-icon is-${activity.tone}`}><img src={activity.icon} alt="" /></span><span><strong>{activity.title}</strong>{activity.subtitle && <small>{activity.subtitle}</small>}</span></div>
+              <div className="v2-dashboard-activity-meta">{activity.amount && <strong>{activity.amount}</strong>}<small>{activity.time}</small></div>
+            </div>
+          ))}
+        </div>
+      )}
     </section>
   );
 }
@@ -242,22 +266,41 @@ function MobileBottomNav() {
   );
 }
 
+function MobileProfileMenu({ open, onClose }) {
+  if (!open) return null;
+  return (
+    <div className="v2-dashboard-profile-modal mobile-only" role="dialog" aria-modal="true" aria-label="Profile menu">
+      <button className="v2-dashboard-profile-backdrop" type="button" aria-label="Close profile menu" onClick={onClose} />
+      <div className="v2-dashboard-profile-dropdown">
+        <a href="#settings"><img src={assets.settings} alt="" /><span>Settings</span></a>
+        <button type="button"><img src={assets.logout} alt="" /><span>Log Out</span></button>
+      </div>
+    </div>
+  );
+}
+
 export default function V2Dashboard() {
+  const params = new URLSearchParams(window.location.search);
+  const previewState = params.get("state") || "";
+  const emptyState = previewState === "empty";
+  const [profileOpen, setProfileOpen] = useState(previewState === "profile");
+
   return (
     <main className="ni-v2 v2-dashboard-page">
       <Sidebar />
       <div className="v2-dashboard-main">
-        <TopHeader />
+        <TopHeader profileOpen={profileOpen} onProfileClick={() => setProfileOpen((value) => !value)} />
         <p className="v2-dashboard-welcome mobile-only">Welcome Back 👋</p>
         <div className="v2-dashboard-title-row desktop-only"><h1>Dashboard</h1><button className="v2-dashboard-date" type="button">Last 30 days <img src={assets.dateChevron} alt="" /></button></div>
         <BalanceCard />
         <div className="v2-dashboard-metrics-scroll">{metrics.map((metric) => <MetricCard key={metric.title} metric={metric} />)}</div>
         <LaunchBanner />
-        <div className="v2-dashboard-insights"><AnalyticsChart /><QuickActions /></div>
-        <div className="v2-dashboard-lower"><LatestActivity /><ReferralSupport /></div>
+        <div className="v2-dashboard-insights"><AnalyticsChart emptyState={emptyState} /><QuickActions /></div>
+        <div className="v2-dashboard-lower"><LatestActivity emptyState={emptyState} /><ReferralSupport /></div>
       </div>
       <div className="v2-dashboard-floating mobile-only"><button className="is-refer" type="button"><img src={assets.floatingRefer} alt="" /></button><button className="is-help" type="button"><img src={assets.help} alt="" /></button></div>
       <MobileBottomNav />
+      <MobileProfileMenu open={profileOpen} onClose={() => setProfileOpen(false)} />
     </main>
   );
 }
