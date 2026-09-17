@@ -50,6 +50,7 @@ installV2Navigation();
 
 const pathname = window.location.pathname;
 const root = document.getElementById("root");
+const socialCreatorPath = /^\/campaigns\/create\/(facebook|youtube|x|twitter|instagram|tiktok)$/;
 
 function renderV2(component) {
   createRoot(root).render(
@@ -97,7 +98,7 @@ if (pathname === "/" || pathname === "") {
   renderV2(<V2Settings />);
 } else if (pathname === "/help-support" || pathname === "/support") {
   renderV2(<V2HelpSupport />);
-} else if (pathname.startsWith("/campaigns/create/")) {
+} else if (socialCreatorPath.test(pathname)) {
   renderV2(<V2SocialTaskCampaign />);
 } else if (pathname === "/campaigns/word-of-mouth/insufficient-balance") {
   renderV2(<V2InsufficientBalance />);
