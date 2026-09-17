@@ -26,7 +26,7 @@ function OAuthButton({ provider, icon }) {
   );
 }
 
-function RegisterField({ label, placeholder, type = "text", autoComplete, password = false }) {
+function RegisterField({ label, placeholder, type = "text", autoComplete, password = false, name }) {
   const [visible, setVisible] = useState(false);
   const inputType = password ? (visible ? "text" : "password") : type;
 
@@ -34,7 +34,7 @@ function RegisterField({ label, placeholder, type = "text", autoComplete, passwo
     <label className="v2-register-field">
       <span>{label}</span>
       <span className="v2-register-input-shell">
-        <input type={inputType} placeholder={placeholder} autoComplete={autoComplete} />
+        <input required name={name} type={inputType} placeholder={placeholder} autoComplete={autoComplete} />
         {password && (
           <button
             className="v2-register-eye"
@@ -52,6 +52,14 @@ function RegisterField({ label, placeholder, type = "text", autoComplete, passwo
 
 export default function V2Register() {
   const [accepted, setAccepted] = useState(false);
+
+  const submit = (event) => {
+    event.preventDefault();
+    if (!accepted) return;
+    const formData = new FormData(event.currentTarget);
+    const email = String(formData.get("email") || "adaeze@gmail.com").trim();
+    window.location.href = `/verify-email?email=${encodeURIComponent(email)}`;
+  };
 
   return (
     <main className="ni-v2 v2-register-page">
@@ -75,18 +83,18 @@ export default function V2Register() {
           <i />
         </div>
 
-        <form className="v2-register-form" onSubmit={(event) => event.preventDefault()}>
+        <form className="v2-register-form" onSubmit={submit}>
           <div className="v2-register-name-row">
-            <RegisterField label="First Name" placeholder="First Name" autoComplete="given-name" />
-            <RegisterField label="Last Name" placeholder="Last Name" autoComplete="family-name" />
+            <RegisterField name="first_name" label="First Name" placeholder="First Name" autoComplete="given-name" />
+            <RegisterField name="last_name" label="Last Name" placeholder="Last Name" autoComplete="family-name" />
           </div>
 
-          <RegisterField label="Email" placeholder="you@example.com" type="email" autoComplete="email" />
-          <RegisterField label="Password" placeholder="Min. 8 characters" autoComplete="new-password" password />
-          <RegisterField label="Confirm Password" placeholder="Re-enter your password" autoComplete="new-password" password />
+          <RegisterField name="email" label="Email" placeholder="you@example.com" type="email" autoComplete="email" />
+          <RegisterField name="password" label="Password" placeholder="Min. 8 characters" autoComplete="new-password" password />
+          <RegisterField name="confirm_password" label="Confirm Password" placeholder="Re-enter your password" autoComplete="new-password" password />
 
           <label className="v2-register-terms">
-            <input type="checkbox" checked={accepted} onChange={(event) => setAccepted(event.target.checked)} />
+            <input required type="checkbox" checked={accepted} onChange={(event) => setAccepted(event.target.checked)} />
             <span className="v2-register-checkbox" aria-hidden="true">{accepted ? "✓" : ""}</span>
             <span>
               I agree to the <a href="#privacy">Privacy Policy</a> and <a href="#terms">Terms of Service</a>
