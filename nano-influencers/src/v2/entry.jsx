@@ -37,6 +37,7 @@ import {
 import "./pages/v2-dashboard-fixes.css";
 import "./pages/v2-wallet-fixes.css";
 import "./pages/v2-settings-fixes.css";
+import "./pages/v2-minor-fixes.css";
 import {
   EmailVerificationPage,
   WhatsAppNumberPage,
