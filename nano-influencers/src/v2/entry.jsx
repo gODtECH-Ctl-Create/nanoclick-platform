@@ -76,6 +76,10 @@ if (pathname === "/" || pathname === "") {
   renderV2(<V2Settings />);
 } else if (pathname === "/help-support") {
   renderV2(<V2HelpSupport />);
+} else if (pathname === "/campaigns/custom-task/insufficient-balance") {
+  renderV2(<V2InsufficientBalance />);
+} else if (pathname === "/campaigns/custom-task/subscription-success") {
+  renderV2(<V2SubscriptionSuccessful />);
 } else if (pathname === "/campaigns/custom-task") {
   renderV2(<V2CustomTask />);
 } else if (pathname === "/campaigns/subscription-success") {
