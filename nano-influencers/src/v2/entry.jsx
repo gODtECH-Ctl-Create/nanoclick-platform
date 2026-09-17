@@ -14,6 +14,7 @@ import V2Campaign from "./pages/V2Campaign.jsx";
 import V2SelectPackage from "./pages/V2SelectPackage.jsx";
 import V2SocialMediaDetails from "./pages/V2SocialMediaDetails.jsx";
 import V2CustomTask from "./pages/V2CustomTask.jsx";
+import { installV2Navigation } from "./navigation.js";
 import {
   V2PreviewSelections,
   V2InsufficientBalance,
@@ -36,6 +37,8 @@ import {
   WhatsAppCodePage,
   VerificationSuccessPage,
 } from "./pages/V2Verification.jsx";
+
+installV2Navigation();
 
 const pathname = window.location.pathname;
 const root = document.getElementById("root");
@@ -74,7 +77,7 @@ if (pathname === "/" || pathname === "") {
   renderV2(<V2Wallet />);
 } else if (pathname === "/settings") {
   renderV2(<V2Settings />);
-} else if (pathname === "/help-support") {
+} else if (pathname === "/help-support" || pathname === "/support") {
   renderV2(<V2HelpSupport />);
 } else if (pathname === "/campaigns/custom-task/insufficient-balance") {
   renderV2(<V2InsufficientBalance />);
