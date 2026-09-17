@@ -14,12 +14,20 @@ const assets = {
   follow: "https://www.figma.com/api/mcp/asset/73793ce8-4e55-446c-902a-9a40554af7b2.svg",
   save: "https://www.figma.com/api/mcp/asset/8346f662-d122-44a6-aa76-fe8755a738ea.svg",
   report: "https://www.figma.com/api/mcp/asset/0cb7d0bc-bd2f-4052-a68a-fc6bb0774f23.svg",
+  telegramBot: "https://www.figma.com/api/mcp/asset/a76cad06-0ad9-45ca-a6cd-c5f7d64a5cee.svg",
+  telegramGroup: "https://www.figma.com/api/mcp/asset/036d13a5-d412-40af-91c3-7cfa46fd2697.svg",
+  telegramShare: "https://www.figma.com/api/mcp/asset/efbda024-aeb9-460d-ba64-ac58540b5fc4.svg",
+  telegramCommunity: "https://www.figma.com/api/mcp/asset/4766725e-6592-4e2f-9278-5519f4eb1ba1.svg",
+  telegramCall: "https://www.figma.com/api/mcp/asset/c01b96f6-a969-48e1-abe5-e8ba640c169d.svg",
+  telegramSubscribe: "https://www.figma.com/api/mcp/asset/c2b3c502-ef8d-4e24-b947-eb9f723e4b37.svg",
+  telegramSave: "https://www.figma.com/api/mcp/asset/2196fb98-a161-4067-90c0-917c20a4bc9c.svg",
+  telegramReport: "https://www.figma.com/api/mcp/asset/266c7473-247f-4009-85cb-bca2c357357f.svg",
   copy: "https://www.figma.com/api/mcp/asset/5163e22b-387e-4c67-8376-bad066a7bdd6.svg",
   download: "https://www.figma.com/api/mcp/asset/adfb4895-d4d4-422e-a8a0-897d5f99a895.svg",
   upload: "https://www.figma.com/api/mcp/asset/634f521b-d977-4a50-9598-a939db371ac5.svg",
 };
 
-const tasks = [
+const whatsappTasks = [
   { id: "join-a-channel", label: "Join a Channel", icon: assets.joinChannel, tone: "blue", kind: "simple", cost: 10 },
   { id: "join-group", label: "Join Group", icon: assets.joinGroup, tone: "green", kind: "simple", cost: 10 },
   { id: "share-on-whatsapp", label: "Share on WhatsApp", icon: assets.share, tone: "green", kind: "share" },
@@ -30,9 +38,33 @@ const tasks = [
   { id: "report-account", label: "Report Account", icon: assets.report, tone: "red", kind: "report", cost: 30 },
 ];
 
-const shareDestinations = [
-  ["Friends DM", 10], ["Status", 20], ["Group Chat", 30], ["Brodcast", 75], ["Channel", 100], ["Community", 200],
+const telegramTasks = [
+  { id: "start-a-tg-bot", label: "Start a TG Bot", icon: assets.telegramBot, tone: "blue", kind: "bot", cost: 100 },
+  { id: "join-group", label: "Join Group", icon: assets.telegramGroup, tone: "green", kind: "simple", cost: 10 },
+  { id: "share-on-telegram", label: "Share on Telegram", icon: assets.telegramShare, tone: "green", kind: "share" },
+  { id: "community-for-you", label: "Community for You", icon: assets.telegramCommunity, tone: "yellow", kind: "community" },
+  { id: "join-telegram-call", label: "Join Telegram Call", icon: assets.telegramCall, tone: "green", kind: "call" },
+  { id: "subscribe-to-my-channel", label: "Subscribe to my Channel", icon: assets.telegramSubscribe, tone: "red", kind: "follow", cost: 10 },
+  { id: "save-my-contact", label: "Save my Contact", icon: assets.telegramSave, tone: "green", kind: "simple", cost: 5 },
+  { id: "report-account", label: "Report Account", icon: assets.telegramReport, tone: "red", kind: "report", cost: 30 },
 ];
+
+const platformConfigs = {
+  whatsapp: {
+    slug: "whatsapp",
+    title: "I need WhatsApp:",
+    linkPlaceholder: "https://whatsapp.com/...",
+    tasks: whatsappTasks,
+    shareDestinations: [["Friends DM", 10], ["Status", 20], ["Group Chat", 30], ["Brodcast", 75], ["Channel", 100], ["Community", 200]],
+  },
+  telegram: {
+    slug: "telegram",
+    title: "I need Telegram:",
+    linkPlaceholder: "https://telegram.com/...",
+    tasks: telegramTasks,
+    shareDestinations: [["Friends DM", 10], ["Status", 20], ["Group Chat", 30]],
+  },
+};
 const callDurations = [["15mins Call", 100], ["30mins Call", 200], ["45mins Call", 300], ["60mins Call", 400], ["90mins Call", 600]];
 const money = (value) => `₦${Number(value || 0).toLocaleString("en-NG")}`;
 
@@ -73,7 +105,7 @@ function UploadBox({ fileName, onFile, accept = "image/*" }) {
   );
 }
 
-function TaskGrid({ selected, onSelect }) {
+function TaskGrid({ tasks, selected, onSelect }) {
   return (
     <section className="v2-stc-task-panel">
       <div className="v2-stc-task-grid">
@@ -89,14 +121,14 @@ function TaskGrid({ selected, onSelect }) {
   );
 }
 
-function ShareTaskPanel({ destinations, setDestinations, formats, setFormats, videoCount, setVideoCount, imageCount, setImageCount, videoFile, setVideoFile, imageFile, setImageFile, videoLink, setVideoLink, imageLink, setImageLink, videoText, setVideoText, imageText, setImageText }) {
+function ShareTaskPanel({ destinationOptions, destinations, setDestinations, formats, setFormats, videoCount, setVideoCount, imageCount, setImageCount, videoFile, setVideoFile, imageFile, setImageFile, videoLink, setVideoLink, imageLink, setImageLink, videoText, setVideoText, imageText, setImageText }) {
   const toggleDestination = (label) => setDestinations((current) => current.includes(label) ? current.filter((value) => value !== label) : [...current, label]);
   const toggleFormat = (label) => setFormats((current) => current.includes(label) ? current.filter((value) => value !== label) : [...current, label]);
   return (
     <>
       <section className="v2-stc-panel">
         <h2 className="v2-stc-subtitle">Where do you want us to Share your Content to?</h2>
-        <div className="v2-wa-check-grid">{shareDestinations.map(([label, cost]) => <Choice key={label} label={label} cost={cost} checked={destinations.includes(label)} onChange={() => toggleDestination(label)} />)}</div>
+        <div className="v2-wa-check-grid">{destinationOptions.map(([label, cost]) => <Choice key={label} label={label} cost={cost} checked={destinations.includes(label)} onChange={() => toggleDestination(label)} />)}</div>
       </section>
       <section className="v2-stc-panel">
         <div className="v2-wa-label-line"><h2>Format</h2><p>You can select one or more</p></div>
@@ -122,6 +154,19 @@ function FollowTaskPanel({ followKinds, setFollowKinds }) {
   return <section className="v2-stc-panel"><h2 className="v2-stc-subtitle">I want:</h2><div className="v2-wa-follow-options"><Choice label="Female Followers" cost={10} checked={followKinds.includes("Female Followers")} onChange={() => toggle("Female Followers")} /><Choice label="Male Followers" cost={10} checked={followKinds.includes("Male Followers")} onChange={() => toggle("Male Followers")} /></div></section>;
 }
 
+
+function BotTaskPanel({ token, setToken, username, setUsername, userInstruction, setUserInstruction, banner, setBanner }) {
+  return (
+    <section className="v2-stc-panel v2-wa-report-copy">
+      <div className="v2-wa-service-title"><h2>Telegram Bot Configuration</h2><p>(Cost ₦100)</p></div>
+      <div className="v2-stc-field"><FieldHeader title="Bot Token" /><input className="v2-stc-input" value={token} onChange={(e) => setToken(e.target.value)} placeholder="type here" /></div>
+      <div className="v2-stc-field"><FieldHeader title="Bot Username" /><input className="v2-stc-input" value={username} onChange={(e) => setUsername(e.target.value)} placeholder="type here" /></div>
+      <div className="v2-stc-field"><FieldHeader title="Instruction for users" /><textarea className="v2-stc-textarea" value={userInstruction} onChange={(e) => setUserInstruction(e.target.value)} placeholder="Drop anything you like the nano-inflencer to know about this task" /></div>
+      <div className="v2-stc-field"><FieldHeader title="Bot Image / Banner" /><UploadBox fileName={banner} onFile={setBanner} /></div>
+    </section>
+  );
+}
+
 function ReportTaskPanel({ values, setValue, evidence, setEvidence }) {
   return (
     <section className="v2-stc-panel v2-wa-report-copy">
@@ -137,9 +182,13 @@ function ReportTaskPanel({ values, setValue, evidence, setEvidence }) {
 
 export default function V2WhatsAppTaskCampaign() {
   const params = new URLSearchParams(window.location.search);
-  const requested = params.get("task") || "join-a-channel";
+  const slug = window.location.pathname.split("/").filter(Boolean).pop()?.toLowerCase() === "telegram" ? "telegram" : "whatsapp";
+  const platform = platformConfigs[slug];
+  const tasks = platform.tasks;
+  const requested = params.get("task") || tasks[0].id;
   const initialTask = tasks.find((item) => item.id === requested) || tasks[0];
   const [selectedTask, setSelectedTask] = useState(initialTask);
+  const [pageAbout, setPageAbout] = useState("");
   const [link, setLink] = useState("");
   const [quantity, setQuantity] = useState("");
   const [instruction, setInstruction] = useState("");
@@ -168,10 +217,14 @@ export default function V2WhatsAppTaskCampaign() {
   const [followKinds, setFollowKinds] = useState([]);
   const [reportValues, setReportValues] = useState({ type: "", reason: "", letter: "", handle: "", comment: "" });
   const [reportEvidence, setReportEvidence] = useState("");
+  const [botToken, setBotToken] = useState("");
+  const [botUsername, setBotUsername] = useState("");
+  const [botInstruction, setBotInstruction] = useState("");
+  const [botBanner, setBotBanner] = useState("");
 
   const setReportValue = (key, value) => setReportValues((current) => ({ ...current, [key]: value }));
   const durationCost = callDurations.find(([label]) => label === duration)?.[1] || 0;
-  const selectedShareCost = shareDestinations.filter(([label]) => shareDest.includes(label)).reduce((sum, [, cost]) => sum + cost, 0);
+  const selectedShareCost = platform.shareDestinations.filter(([label]) => shareDest.includes(label)).reduce((sum, [, cost]) => sum + cost, 0);
   const unitCost = selectedTask.kind === "share" ? selectedShareCost : selectedTask.kind === "call" ? durationCost : selectedTask.kind === "follow" ? (followKinds.length ? 10 : 0) : selectedTask.cost || 0;
   const totalCost = useMemo(() => Number(quantity || 0) * unitCost, [quantity, unitCost]);
 
@@ -192,29 +245,31 @@ export default function V2WhatsAppTaskCampaign() {
 
   const submit = (event) => {
     event.preventDefault();
-    sessionStorage.setItem("v2WhatsAppTaskCampaignDraft", JSON.stringify({ selectedTask: selectedTask.id, link, quantity, instruction, country, targetState, delivery, startDate, startTime, shareDest, formats, videoCount, imageCount, callType, duration, followKinds, reportValues, totalCost, privacyAccepted, termsAccepted }));
+    sessionStorage.setItem(`v2${platform.slug === "telegram" ? "Telegram" : "WhatsApp"}TaskCampaignDraft`, JSON.stringify({ platform: platform.slug, selectedTask: selectedTask.id, pageAbout, link, quantity, instruction, country, targetState, delivery, startDate, startTime, shareDest, formats, videoCount, imageCount, callType, duration, followKinds, reportValues, botToken, botUsername, botInstruction, totalCost, privacyAccepted, termsAccepted }));
     window.location.assign(params.get("payment") === "success" ? "/campaigns/subscription-success" : "/campaigns/insufficient-balance");
   };
 
-  const showLink = selectedTask.kind !== "share" && selectedTask.kind !== "community";
+  const showLink = selectedTask.kind !== "share" && selectedTask.kind !== "community" && selectedTask.kind !== "bot";
   const showInstructions = selectedTask.kind !== "report" && selectedTask.kind !== "community";
 
   return (
     <main className="v2-stc-page v2-wa-page">
       <div className="v2-stc-shell">
         <header className="v2-stc-backbar"><a href="/campaigns"><img src={assets.arrowLeft} alt="" width="24" height="24" /><span>Go Back</span></a></header>
-        <header className="v2-stc-heading"><h1>I need WhatsApp:</h1></header>
-        <TaskGrid selected={selectedTask} onSelect={chooseTask} />
+        <header className="v2-stc-heading"><h1>{platform.title}</h1></header>
+        <TaskGrid tasks={tasks} selected={selectedTask} onSelect={chooseTask} />
 
         <form className="v2-stc-fields" onSubmit={submit}>
-          {selectedTask.kind === "share" ? <ShareTaskPanel destinations={shareDest} setDestinations={setShareDest} formats={formats} setFormats={setFormats} videoCount={videoCount} setVideoCount={setVideoCount} imageCount={imageCount} setImageCount={setImageCount} videoFile={videoFile} setVideoFile={setVideoFile} imageFile={imageFile} setImageFile={setImageFile} videoLink={videoLink} setVideoLink={setVideoLink} imageLink={imageLink} setImageLink={setImageLink} videoText={videoText} setVideoText={setVideoText} imageText={imageText} setImageText={setImageText} /> : null}
+          {selectedTask.kind === "share" ? <ShareTaskPanel destinationOptions={platform.shareDestinations} destinations={shareDest} setDestinations={setShareDest} formats={formats} setFormats={setFormats} videoCount={videoCount} setVideoCount={setVideoCount} imageCount={imageCount} setImageCount={setImageCount} videoFile={videoFile} setVideoFile={setVideoFile} imageFile={imageFile} setImageFile={setImageFile} videoLink={videoLink} setVideoLink={setVideoLink} imageLink={imageLink} setImageLink={setImageLink} videoText={videoText} setVideoText={setVideoText} imageText={imageText} setImageText={setImageText} /> : null}
           {selectedTask.kind === "call" ? <CallTaskPanel callType={callType} setCallType={setCallType} duration={duration} setDuration={setDuration} /> : null}
           {selectedTask.kind === "follow" ? <FollowTaskPanel followKinds={followKinds} setFollowKinds={setFollowKinds} /> : null}
           {selectedTask.kind === "report" ? <ReportTaskPanel values={reportValues} setValue={setReportValue} evidence={reportEvidence} setEvidence={setReportEvidence} /> : null}
+          {selectedTask.kind === "bot" ? <BotTaskPanel token={botToken} setToken={setBotToken} username={botUsername} setUsername={setBotUsername} userInstruction={botInstruction} setUserInstruction={setBotInstruction} banner={botBanner} setBanner={setBotBanner} /> : null}
 
           {selectedTask.kind !== "community" ? <section className="v2-stc-panel v2-wa-common-panel">
             {selectedTask.kind === "simple" ? <div className="v2-wa-service-title"><h2>{selectedTask.label}</h2><p>(Cost {money(selectedTask.cost)})</p></div> : null}
-            {showLink ? <div className="v2-stc-field"><FieldHeader title="Link" help="Ensure that you drop the correct link here." /><p className="v2-stc-inline-note">Drop the link to the post here.</p><input className="v2-stc-input" value={link} onChange={(e) => setLink(e.target.value)} placeholder="https://whatsapp.com/..." /></div> : null}
+            <div className="v2-stc-field"><FieldHeader title="What is your page/profile about" /><input className="v2-stc-input" value={pageAbout} onChange={(e) => setPageAbout(e.target.value)} placeholder="type here" maxLength={50} /><p className="v2-stc-meta">{pageAbout.length}/50</p></div>
+            {showLink ? <div className="v2-stc-field"><FieldHeader title="Link" help="Ensure that you drop the correct link here." /><p className="v2-stc-inline-note">Drop the link to the post here.</p><input className="v2-stc-input" value={link} onChange={(e) => setLink(e.target.value)} placeholder={platform.linkPlaceholder} /></div> : null}
             <div className="v2-stc-field"><FieldHeader title="Total Quantity" help="Total quantity based on the addition of all individual quantities." /><input className="v2-stc-input" type="number" min="0" value={quantity} onChange={(e) => setQuantity(e.target.value)} placeholder="0" /></div>
             <div className="v2-stc-field"><FieldHeader title="Cost" help="Total cost based on the addition of all individual costs." /><input className="v2-stc-input" value={money(totalCost)} readOnly /></div>
           </section> : null}
