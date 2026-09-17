@@ -4,7 +4,11 @@ import { BrowserRouter } from "react-router-dom";
 import V2Landing from "./pages/V2Landing.jsx";
 import V2Register from "./pages/V2Register.jsx";
 import V2Login from "./pages/V2Login.jsx";
-import V2ForgotPassword from "./pages/V2ForgotPassword.jsx";
+import V2ForgotPassword, {
+  V2ForgotPasswordCode,
+  V2ForgotPasswordReset,
+  V2ForgotPasswordSuccess,
+} from "./pages/V2ForgotPassword.jsx";
 import V2Dashboard from "./pages/V2Dashboard.jsx";
 import { V2FreeTrial, V2WeeklyGiveaway } from "./pages/V2DashboardExtras.jsx";
 import { V2Wallet, V2WalletSuccess } from "./pages/V2Wallet.jsx";
@@ -14,6 +18,8 @@ import V2Campaign from "./pages/V2Campaign.jsx";
 import V2SelectPackage from "./pages/V2SelectPackage.jsx";
 import V2SocialMediaDetails from "./pages/V2SocialMediaDetails.jsx";
 import V2CustomTask from "./pages/V2CustomTask.jsx";
+import { V2WordOfMouth, V2WordOfMouthPreview } from "./pages/V2WordOfMouth.jsx";
+import { V2ConnectivityGate, V2ErrorBoundary, V2SystemState } from "./pages/V2SystemState.jsx";
 import { installV2Navigation } from "./navigation.js";
 import {
   V2PreviewSelections,
@@ -46,7 +52,11 @@ const root = document.getElementById("root");
 function renderV2(component) {
   createRoot(root).render(
     <React.StrictMode>
-      <BrowserRouter>{component}</BrowserRouter>
+      <V2ErrorBoundary>
+        <V2ConnectivityGate>
+          <BrowserRouter>{component}</BrowserRouter>
+        </V2ConnectivityGate>
+      </V2ErrorBoundary>
     </React.StrictMode>,
   );
 }
@@ -57,6 +67,12 @@ if (pathname === "/" || pathname === "") {
   renderV2(<V2Register />);
 } else if (pathname === "/login") {
   renderV2(<V2Login />);
+} else if (pathname === "/forgot-password/code") {
+  renderV2(<V2ForgotPasswordCode />);
+} else if (pathname === "/forgot-password/reset") {
+  renderV2(<V2ForgotPasswordReset />);
+} else if (pathname === "/forgot-password/success") {
+  renderV2(<V2ForgotPasswordSuccess />);
 } else if (pathname === "/forgot-password") {
   renderV2(<V2ForgotPassword />);
 } else if (pathname === "/verify-email") {
@@ -79,6 +95,14 @@ if (pathname === "/" || pathname === "") {
   renderV2(<V2Settings />);
 } else if (pathname === "/help-support" || pathname === "/support") {
   renderV2(<V2HelpSupport />);
+} else if (pathname === "/campaigns/word-of-mouth/insufficient-balance") {
+  renderV2(<V2InsufficientBalance />);
+} else if (pathname === "/campaigns/word-of-mouth/subscription-success") {
+  renderV2(<V2SubscriptionSuccessful />);
+} else if (pathname === "/campaigns/word-of-mouth/preview") {
+  renderV2(<V2WordOfMouthPreview />);
+} else if (pathname === "/campaigns/word-of-mouth") {
+  renderV2(<V2WordOfMouth />);
 } else if (pathname === "/campaigns/custom-task/insufficient-balance") {
   renderV2(<V2InsufficientBalance />);
 } else if (pathname === "/campaigns/custom-task/subscription-success") {
@@ -109,8 +133,12 @@ if (pathname === "/" || pathname === "") {
   renderV2(<V2Campaign />);
 } else if (pathname === "/dashboard" || pathname === "/app") {
   renderV2(<V2Dashboard />);
+} else if (pathname === "/system/error") {
+  renderV2(<V2SystemState type="error" />);
+} else if (pathname === "/system/offline") {
+  renderV2(<V2SystemState type="offline" />);
+} else if (pathname === "/404" || pathname === "/analytics") {
+  renderV2(<V2SystemState type="not-found" />);
 } else {
-  // Keep all other authenticated routes on the current implementation
-  // while V2 is rebuilt screen-by-screen.
-  import("../advertiser-app.jsx");
+  renderV2(<V2SystemState type="not-found" />);
 }
