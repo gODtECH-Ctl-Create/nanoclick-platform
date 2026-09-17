@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 import "./v2-register.css";
 
 const assets = {
@@ -11,10 +10,10 @@ const assets = {
 
 function Brand() {
   return (
-    <Link className="v2-register-brand" to="/" aria-label="The Nano Influencers home">
+    <a className="v2-register-brand" href="/" aria-label="The Nano Influencers home">
       <img src={assets.brandIcon} alt="" />
       <span>The Nano Influencers</span>
-    </Link>
+    </a>
   );
 }
 
@@ -98,7 +97,7 @@ export default function V2Register() {
         </form>
 
         <p className="v2-register-signin">
-          Already have an account? <Link to="/login">Sign in</Link>
+          Already have an account? <a href="/login">Sign in</a>
         </p>
       </div>
     </main>
