@@ -1,0 +1,36 @@
+/* Small isolated fidelity fixes. Keep these scoped so completed screens are not disturbed. */
+
+/* Help & Support must use the same 240px sidebar footprint as the other V2 dashboard screens. */
+.v2-help-page,
+.v2-help-page * {
+  box-sizing: border-box;
+}
+
+@media (min-width: 901px) {
+  .v2-help-sidebar {
+    width: 240px;
+    max-width: 240px;
+    flex: 0 0 240px;
+    height: calc(100vh - 20px);
+    min-height: calc(100vh - 20px);
+    position: sticky;
+    top: 10px;
+  }
+}
+
+/* Exact Figma artwork for the four Single Task service cards (node 344:12715). */
+.v2-campaign-single-card:nth-child(1) img {
+  content: url("https://www.figma.com/api/mcp/asset/c0138154-82c7-40f2-baae-eb282d19c40d.svg");
+}
+
+.v2-campaign-single-card:nth-child(2) img {
+  content: url("https://www.figma.com/api/mcp/asset/f198781c-3a83-491a-accd-edb5d32f1dd2.svg");
+}
+
+.v2-campaign-single-card:nth-child(3) img {
+  content: url("https://www.figma.com/api/mcp/asset/135db3ba-ef4d-419b-ab3e-649e629c334a.svg");
+}
+
+.v2-campaign-single-card:nth-child(4) img {
+  content: url("https://www.figma.com/api/mcp/asset/79d52acf-b29b-430b-8ae9-8eb752675749.svg");
+}
