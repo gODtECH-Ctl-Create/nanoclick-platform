@@ -6,6 +6,7 @@ import V2Register from "./pages/V2Register.jsx";
 import V2Login from "./pages/V2Login.jsx";
 import V2ForgotPassword from "./pages/V2ForgotPassword.jsx";
 import V2Dashboard from "./pages/V2Dashboard.jsx";
+import "./pages/v2-dashboard-fixes.css";
 import {
   EmailVerificationPage,
   WhatsAppNumberPage,
