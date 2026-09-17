@@ -5,6 +5,7 @@ import V2Landing from "./pages/V2Landing.jsx";
 import V2Register from "./pages/V2Register.jsx";
 import V2Login from "./pages/V2Login.jsx";
 import V2ForgotPassword from "./pages/V2ForgotPassword.jsx";
+import V2Dashboard from "./pages/V2Dashboard.jsx";
 import {
   EmailVerificationPage,
   WhatsAppNumberPage,
@@ -39,8 +40,10 @@ if (pathname === "/" || pathname === "") {
   renderV2(<WhatsAppCodePage />);
 } else if (pathname === "/verification-success") {
   renderV2(<VerificationSuccessPage />);
+} else if (pathname === "/dashboard" || pathname === "/app") {
+  renderV2(<V2Dashboard />);
 } else {
-  // Keep all other authenticated/auth routes on the current implementation
+  // Keep all other authenticated routes on the current implementation
   // while V2 is rebuilt screen-by-screen.
   import("../advertiser-app.jsx");
 }
