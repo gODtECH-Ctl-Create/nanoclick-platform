@@ -15,6 +15,12 @@ const socialCampaignRoutes = {
   WhatsApp: "/campaigns/create/whatsapp",
   Instagram: "/campaigns/create/instagram",
   TikTok: "/campaigns/create/tiktok",
+  LinkedIn: "/campaigns/create/linkedin",
+  Telegram: "/campaigns/create/telegram",
+  Audiomack: "/campaigns/create/audiomack",
+  Spotify: "/campaigns/create/spotify",
+  BoomPlay: "/campaigns/create/boomplay",
+  "YT Music": "/campaigns/create/youtube-music",
 };
 
 function textOf(element) {
