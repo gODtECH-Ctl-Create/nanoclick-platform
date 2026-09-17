@@ -51,6 +51,8 @@ const stats = [
   [assets.statRate, "98%", "Message Trust Rate"],
 ];
 
+const mobileImages = [assets.mobile1, assets.mobile2, assets.mobile3, assets.mobile4, assets.mobile5];
+
 function DesktopNav() {
   return (
     <header className="v2-nav v2-nav-desktop">
@@ -117,6 +119,34 @@ function StatCard({ icon, value, label }) {
   );
 }
 
+function MobileImageMarquee() {
+  return (
+    <div className="v2-mobile-image-strip" aria-label="Nano influencer community">
+      <div className="v2-mobile-image-track">
+        {[0, 1].map(copy => (
+          <div className="v2-mobile-image-group" aria-hidden={copy === 1 ? "true" : undefined} key={copy}>
+            {mobileImages.map((src, index) => <img src={src} alt="" key={`${copy}-${index}`} />)}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function MobileStatsMarquee() {
+  return (
+    <div className="v2-mobile-stats" aria-label="Nano Influencers statistics">
+      <div className="v2-mobile-stats-track">
+        {[0, 1].map(copy => (
+          <div className="v2-mobile-stats-group" aria-hidden={copy === 1 ? "true" : undefined} key={copy}>
+            {stats.map(([icon, value, label]) => <StatCard icon={icon} value={value} label={label} key={`${copy}-${label}`} />)}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 function Hero() {
   return (
     <section className="v2-hero" id="home">
@@ -163,15 +193,13 @@ function Hero() {
         <figure className="hero-img hero-img-6"><img src={assets.hero6} alt="" /></figure>
       </div>
 
-      <div className="v2-mobile-image-strip" aria-label="Nano influencer community">
-        {[assets.mobile1, assets.mobile2, assets.mobile3, assets.mobile4, assets.mobile5].map((src, index) => (
-          <img src={src} alt="" key={src} />
-        ))}
-      </div>
+      <MobileImageMarquee />
 
-      <div className="v2-stats">
+      <div className="v2-stats v2-stats-desktop">
         {stats.map(([icon, value, label]) => <StatCard icon={icon} value={value} label={label} key={label} />)}
       </div>
+
+      <MobileStatsMarquee />
     </section>
   );
 }
