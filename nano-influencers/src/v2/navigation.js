@@ -32,6 +32,69 @@ function go(path) {
   window.location.assign(path);
 }
 
+
+const authenticatedBrandSelector = [
+  ".v2-dashboard-brand",
+  ".v2-wallet-brand",
+  ".v2-campaign-brand",
+  ".v2-settings-brand",
+  ".v2-help-brand",
+].join(",");
+
+const logoutSelector = [
+  ".v2-dashboard-logout",
+  ".v2-wallet-logout",
+  ".v2-campaign-logout",
+  ".v2-settings-logout",
+  ".v2-help-logout",
+].join(",");
+
+function isLogoutIntent(control) {
+  if (control.matches(logoutSelector)) return true;
+  if (control.matches(authenticatedBrandSelector)) return true;
+  if (control.closest(".v2-dashboard-profile-dropdown") && textOf(control) === "Log Out") return true;
+  return false;
+}
+
+function ensureLogoutDialog() {
+  let dialog = document.querySelector(".v2-logout-confirm");
+  if (dialog) return dialog;
+
+  dialog = document.createElement("div");
+  dialog.className = "v2-logout-confirm";
+  dialog.hidden = true;
+  dialog.innerHTML = `
+    <button class="v2-logout-confirm__backdrop" type="button" aria-label="Cancel logout"></button>
+    <section class="v2-logout-confirm__card" role="dialog" aria-modal="true" aria-labelledby="v2-logout-title" aria-describedby="v2-logout-copy">
+      <div class="v2-logout-confirm__icon" aria-hidden="true">↪</div>
+      <h2 id="v2-logout-title">Log out?</h2>
+      <p id="v2-logout-copy">Are you sure you want to log out of your Nano Influencers account?</p>
+      <div class="v2-logout-confirm__actions">
+        <button class="v2-logout-confirm__cancel" type="button">Cancel</button>
+        <button class="v2-logout-confirm__submit" type="button">Log Out</button>
+      </div>
+    </section>
+  `;
+
+  const close = () => {
+    dialog.hidden = true;
+    document.body.style.removeProperty("overflow");
+  };
+
+  dialog.querySelector(".v2-logout-confirm__backdrop").addEventListener("click", close);
+  dialog.querySelector(".v2-logout-confirm__cancel").addEventListener("click", close);
+  dialog.querySelector(".v2-logout-confirm__submit").addEventListener("click", () => go("/login"));
+  document.body.appendChild(dialog);
+  return dialog;
+}
+
+function askToLogout() {
+  const dialog = ensureLogoutDialog();
+  dialog.hidden = false;
+  document.body.style.overflow = "hidden";
+  window.setTimeout(() => dialog.querySelector(".v2-logout-confirm__cancel")?.focus(), 0);
+}
+
 function routeForSidebar(control) {
   if (!control.matches([
     ".v2-dashboard-sidebar-item",
@@ -157,9 +220,25 @@ export function installV2Navigation() {
     }
   }, true);
 
+  document.addEventListener("keydown", (event) => {
+    if (event.key !== "Escape") return;
+    const dialog = document.querySelector(".v2-logout-confirm");
+    if (!dialog || dialog.hidden) return;
+    dialog.hidden = true;
+    document.body.style.removeProperty("overflow");
+  }, true);
+
   document.addEventListener("click", (event) => {
     const control = event.target.closest("a,button");
     if (!control) return;
+
+
+    if (isLogoutIntent(control)) {
+      event.preventDefault();
+      event.stopImmediatePropagation();
+      askToLogout();
+      return;
+    }
 
     if (
       control.closest(".v2-preview-page") &&
