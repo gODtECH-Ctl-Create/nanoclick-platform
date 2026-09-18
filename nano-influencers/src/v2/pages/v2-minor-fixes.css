@@ -131,3 +131,84 @@
 }
 
 /* safe-area deployment marker */
+
+
+/* Mobile chrome spacing correction from device QA screenshots.
+   The earlier safe-area pass only painted the exposed strips. This pass removes
+   the oversized layout whitespace itself so the header/nav sit against the
+   usable top and bottom edges while still respecting real device safe areas. */
+@media (max-width: 900px) {
+  .v2-dashboard-topbar,
+  .v2-settings-topbar {
+    height: calc(70px + env(safe-area-inset-top));
+    min-height: calc(70px + env(safe-area-inset-top));
+    padding-top: calc(14px + env(safe-area-inset-top));
+    padding-bottom: 14px;
+    box-sizing: border-box;
+    align-items: flex-start;
+  }
+
+  .v2-dashboard-topbar > .v2-dashboard-brand,
+  .v2-settings-mobile-brand {
+    margin-top: 0;
+  }
+
+  /* The wallet Figma frame included a simulated phone status bar. In a real
+     browser/device it creates a second empty strip, so don't render it. */
+  .v2-wallet-statusbar {
+    display: none !important;
+  }
+
+  .v2-wallet-topbar {
+    height: calc(70px + env(safe-area-inset-top));
+    min-height: calc(70px + env(safe-area-inset-top));
+    padding-top: calc(14px + env(safe-area-inset-top));
+    padding-bottom: 14px;
+    box-sizing: border-box;
+    align-items: flex-start;
+  }
+
+  .v2-help-main {
+    padding-top: 0;
+  }
+
+  .v2-help-topbar {
+    height: calc(70px + env(safe-area-inset-top));
+    min-height: calc(70px + env(safe-area-inset-top));
+    padding-top: calc(14px + env(safe-area-inset-top));
+    padding-bottom: 14px;
+    box-sizing: border-box;
+    align-items: flex-start;
+  }
+
+  .v2-dashboard-bottom-nav,
+  .v2-wallet-bottom-nav,
+  .v2-campaign-bottom-nav {
+    height: calc(74px + env(safe-area-inset-bottom));
+    min-height: calc(74px + env(safe-area-inset-bottom));
+    padding-top: 12px;
+    padding-bottom: calc(10px + env(safe-area-inset-bottom));
+    align-items: flex-start;
+    box-sizing: border-box;
+  }
+
+  .v2-dashboard-page,
+  .v2-wallet-page,
+  .v2-campaign-page {
+    padding-bottom: calc(84px + env(safe-area-inset-bottom));
+  }
+
+  .v2-dashboard-floating {
+    bottom: calc(88px + env(safe-area-inset-bottom));
+  }
+
+  .v2-wallet-home-indicator {
+    bottom: calc(4px + env(safe-area-inset-bottom));
+  }
+}
+
+@media (max-width: 760px) {
+  .v2-campaign-main {
+    padding-top: calc(14px + env(safe-area-inset-top));
+  }
+}
