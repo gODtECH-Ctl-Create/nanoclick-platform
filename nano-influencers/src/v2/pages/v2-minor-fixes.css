@@ -34,3 +34,98 @@
 .v2-campaign-single-card:nth-child(4) img {
   content: url("https://www.figma.com/api/mcp/asset/79d52acf-b29b-430b-8ae9-8eb752675749.svg");
 }
+
+
+/* Mobile shell safe-area fix.
+   Keep controls inside their existing layout, but let the white top/bottom chrome
+   visually reach the physical edges of notched / gesture-navigation phones. */
+@media (max-width: 900px) {
+  html,
+  body,
+  #root {
+    min-height: 100%;
+    background: #fff;
+  }
+
+  body {
+    margin: 0;
+  }
+
+  .v2-dashboard-page,
+  .v2-wallet-page,
+  .v2-campaign-page,
+  .v2-settings-page,
+  .v2-help-page {
+    background: #fff;
+  }
+
+  .v2-dashboard-topbar,
+  .v2-wallet-topbar,
+  .v2-campaign-topbar,
+  .v2-settings-topbar,
+  .v2-help-topbar {
+    position: relative;
+    background: #fff;
+  }
+
+  /* Paint through the device's top safe area without moving the existing header controls. */
+  .v2-dashboard-topbar::before,
+  .v2-wallet-statusbar::before,
+  .v2-campaign-topbar::before,
+  .v2-settings-topbar::before,
+  .v2-help-topbar::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    left: -18px;
+    right: -18px;
+    top: calc(-1 * env(safe-area-inset-top));
+    height: env(safe-area-inset-top);
+    background: #fff;
+    pointer-events: none;
+  }
+
+  .v2-wallet-statusbar {
+    position: relative;
+    background: #fff;
+  }
+
+  /* Make the mobile bottom navigation background full-bleed while preserving
+     the exact horizontal positions of its existing icons. */
+  .v2-dashboard-bottom-nav {
+    left: 0;
+    right: 0;
+    height: calc(107px + env(safe-area-inset-bottom));
+    padding: 24px 36px calc(21px + env(safe-area-inset-bottom));
+    box-sizing: border-box;
+  }
+
+  .v2-wallet-bottom-nav {
+    left: 0;
+    right: 0;
+    width: 100%;
+    transform: none;
+    height: calc(107px + env(safe-area-inset-bottom));
+    padding: 24px 18px calc(21px + env(safe-area-inset-bottom));
+    box-sizing: border-box;
+  }
+
+  .v2-campaign-bottom-nav {
+    left: 0;
+    right: 0;
+    height: calc(107px + env(safe-area-inset-bottom));
+    padding: 24px 18px calc(21px + env(safe-area-inset-bottom));
+    box-sizing: border-box;
+  }
+
+  /* Keep scrolling content clear of the enlarged gesture-area background. */
+  .v2-dashboard-page,
+  .v2-wallet-page,
+  .v2-campaign-page {
+    padding-bottom: calc(110px + env(safe-area-inset-bottom));
+  }
+
+  .v2-wallet-home-indicator {
+    bottom: calc(8px + env(safe-area-inset-bottom));
+  }
+}
