@@ -317,3 +317,30 @@
     font-size: 22px;
   }
 }
+
+
+/* Wallet/Campaign mobile profile buttons use the same account menu behaviour as Dashboard. */
+.v2-wallet-profile,
+.v2-campaign-profile {
+  border: 0;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+
+@media (max-width: 900px) {
+  .v2-wallet-profile.is-open,
+  .v2-campaign-profile.is-open {
+    outline: 2px solid #fff;
+    outline-offset: 1px;
+    position: relative;
+    z-index: 31;
+  }
+}
+
+.v2-logout-confirm__icon img {
+  width: 26px;
+  height: 26px;
+  display: block;
+  object-fit: contain;
+}
