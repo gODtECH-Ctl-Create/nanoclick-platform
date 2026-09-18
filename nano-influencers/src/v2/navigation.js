@@ -66,7 +66,7 @@ function ensureLogoutDialog() {
   dialog.innerHTML = `
     <button class="v2-logout-confirm__backdrop" type="button" aria-label="Cancel logout"></button>
     <section class="v2-logout-confirm__card" role="dialog" aria-modal="true" aria-labelledby="v2-logout-title" aria-describedby="v2-logout-copy">
-      <div class="v2-logout-confirm__icon" aria-hidden="true">↪</div>
+      <div class="v2-logout-confirm__icon" aria-hidden="true"><img src="" alt="" /></div>
       <h2 id="v2-logout-title">Log out?</h2>
       <p id="v2-logout-copy">Are you sure you want to log out of your Nano Influencers account?</p>
       <div class="v2-logout-confirm__actions">
@@ -88,8 +88,18 @@ function ensureLogoutDialog() {
   return dialog;
 }
 
-function askToLogout() {
+function askToLogout(control) {
   const dialog = ensureLogoutDialog();
+  const page = control?.closest?.(".v2-dashboard-page, .v2-wallet-page, .v2-campaign-page, .v2-settings-page, .v2-help-page");
+  const pageIcon = page?.querySelector?.([
+    ".v2-dashboard-logout img",
+    ".v2-wallet-logout img",
+    ".v2-campaign-logout img",
+    ".v2-settings-logout img",
+    ".v2-help-logout img",
+  ].join(","));
+  const icon = dialog.querySelector(".v2-logout-confirm__icon img");
+  if (icon) icon.src = pageIcon?.getAttribute("src") || "https://www.figma.com/api/mcp/asset/5870bfc9-512b-4a93-a3cc-d7de80bf4f0b.svg";
   dialog.hidden = false;
   document.body.style.overflow = "hidden";
   window.setTimeout(() => dialog.querySelector(".v2-logout-confirm__cancel")?.focus(), 0);
@@ -236,7 +246,7 @@ export function installV2Navigation() {
     if (isLogoutIntent(control)) {
       event.preventDefault();
       event.stopImmediatePropagation();
-      askToLogout();
+      askToLogout(control);
       return;
     }
 
