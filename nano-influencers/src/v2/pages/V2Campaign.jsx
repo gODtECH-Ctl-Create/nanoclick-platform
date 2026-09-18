@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button } from "../components/ui/Button.jsx";
 import "./v2-campaign.css";
 import "./v2-campaign-populated.css";
@@ -86,14 +86,14 @@ function Sidebar() {
   );
 }
 
-function TopHeader() {
+function TopHeader({ profileOpen, onProfileClick }) {
   return (
     <header className="v2-campaign-topbar">
       <div className="v2-campaign-mobile-brand"><Brand /></div>
       <p className="v2-campaign-welcome">Welcome Back 👋</p>
       <div className="v2-campaign-user">
         <button className="v2-campaign-notification" type="button" aria-label="Notifications"><img src={assets.notification} alt="" /></button>
-        <div className="v2-campaign-profile"><img src={assets.profile} alt="Adaeze O." /><span>Adaeze O.</span></div>
+        <button className={`v2-campaign-profile${profileOpen ? " is-open" : ""}`} type="button" aria-label="Open profile menu" aria-expanded={profileOpen} onClick={onProfileClick}><img src={assets.profile} alt="Adaeze O." /><span>Adaeze O.</span></button>
       </div>
     </header>
   );
@@ -181,13 +181,28 @@ function MobileBottomNav() {
   return <nav className="v2-campaign-bottom-nav" aria-label="Mobile navigation"><a href="/dashboard"><img src={assets.dashboard} alt="" /></a><a href="/wallet"><img src={assets.wallet} alt="" /></a><a className="is-active" href="/campaigns"><img src={assets.campaign} alt="" /><span>Campaigns</span></a><a href="#analytics"><img src={assets.analytics} alt="" /></a></nav>;
 }
 
+
+function MobileProfileMenu({ open, onClose }) {
+  if (!open) return null;
+  return (
+    <div className="v2-dashboard-profile-modal mobile-only" role="dialog" aria-modal="true" aria-label="Profile menu">
+      <button className="v2-dashboard-profile-backdrop" type="button" aria-label="Close profile menu" onClick={onClose} />
+      <div className="v2-dashboard-profile-dropdown">
+        <a href="/settings"><img src={assets.settings} alt="" /><span>Settings</span></a>
+        <button type="button"><img src={assets.logout} alt="" /><span>Log Out</span></button>
+      </div>
+    </div>
+  );
+}
+
 export default function V2Campaign() {
   const activeState = new URLSearchParams(window.location.search).get("state") === "active";
+  const [profileOpen, setProfileOpen] = useState(false);
   return (
     <div className="v2-campaign-page">
       <Sidebar />
       <main className="v2-campaign-main">
-        <TopHeader />
+        <TopHeader profileOpen={profileOpen} onProfileClick={() => setProfileOpen((value) => !value)} />
         <header className="v2-campaign-page-heading"><h1>Campaign Services</h1><p>Choose the right service to grow your brand and reach your audience.</p></header>
         <section className="v2-campaign-service-grid"><ServiceCard type="growth" /><ServiceCard type="wom" /></section>
         <CustomTasks />
@@ -196,6 +211,7 @@ export default function V2Campaign() {
         <SingleTasks />
       </main>
       <MobileBottomNav />
+      <MobileProfileMenu open={profileOpen} onClose={() => setProfileOpen(false)} />
     </div>
   );
 }
