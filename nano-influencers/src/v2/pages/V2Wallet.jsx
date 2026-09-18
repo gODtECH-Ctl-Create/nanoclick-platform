@@ -111,14 +111,14 @@ function Sidebar() {
   );
 }
 
-function TopHeader() {
+function TopHeader({ profileOpen, onProfileClick }) {
   return (
     <header className="v2-wallet-topbar">
       <div className="v2-wallet-mobile-brand"><Brand mobile /></div>
       <p className="v2-wallet-welcome">Welcome Back 👋</p>
       <div className="v2-wallet-user">
         <button className="v2-wallet-notification" type="button" aria-label="Notifications"><img className="desktop-notification" src={assets.notification} alt="" /><img className="mobile-notification" src={assets.mobileNotification} alt="" /></button>
-        <div className="v2-wallet-profile"><img className="desktop-profile" src={assets.profile} alt="Adaeze O." /><img className="mobile-profile" src={assets.mobileProfile} alt="Adaeze O." /><span>Adaeze O.</span></div>
+        <button className={`v2-wallet-profile${profileOpen ? " is-open" : ""}`} type="button" aria-label="Open profile menu" aria-expanded={profileOpen} onClick={onProfileClick}><img className="desktop-profile" src={assets.profile} alt="Adaeze O." /><img className="mobile-profile" src={assets.mobileProfile} alt="Adaeze O." /><span>Adaeze O.</span></button>
       </div>
     </header>
   );
@@ -226,18 +226,33 @@ function DepositModal({ open, onClose }) {
   );
 }
 
+
+function MobileProfileMenu({ open, onClose }) {
+  if (!open) return null;
+  return (
+    <div className="v2-dashboard-profile-modal mobile-only" role="dialog" aria-modal="true" aria-label="Profile menu">
+      <button className="v2-dashboard-profile-backdrop" type="button" aria-label="Close profile menu" onClick={onClose} />
+      <div className="v2-dashboard-profile-dropdown">
+        <a href="/settings"><img src={assets.settings} alt="" /><span>Settings</span></a>
+        <button type="button"><img src={assets.logout} alt="" /><span>Log Out</span></button>
+      </div>
+    </div>
+  );
+}
+
 export function V2Wallet() {
   const params = new URLSearchParams(window.location.search);
   const populated = params.get("state") === "activity";
   const initialDeposit = params.get("state") === "deposit";
   const [depositOpen, setDepositOpen] = useState(initialDeposit);
+  const [profileOpen, setProfileOpen] = useState(false);
   const openDeposit = () => setDepositOpen(true);
   return (
     <main className={`ni-v2 v2-wallet-page${depositOpen ? " is-deposit-open" : ""}`}>
       <PhoneStatusBar />
       <Sidebar />
       <div className="v2-wallet-main">
-        <TopHeader />
+        <TopHeader profileOpen={profileOpen} onProfileClick={() => setProfileOpen((value) => !value)} />
         <section className="v2-wallet-content">
           <h1>My Wallet</h1>
           <BalanceCard populated={populated} onAddFunds={openDeposit} />
@@ -247,6 +262,7 @@ export function V2Wallet() {
       </div>
       <MobileBottomNav />
       <DepositModal open={depositOpen} onClose={() => setDepositOpen(false)} />
+      <MobileProfileMenu open={profileOpen} onClose={() => setProfileOpen(false)} />
     </main>
   );
 }
