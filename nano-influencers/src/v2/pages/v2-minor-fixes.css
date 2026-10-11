@@ -20,19 +20,19 @@
 
 /* Exact Figma artwork for the four Single Task service cards (node 344:12715). */
 .v2-campaign-single-card:nth-child(1) img {
-  content: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2072%2072%22%20width%3D%2272%22%20height%3D%2272%22%3E%3Crect%20x%3D%223%22%20y%3D%223%22%20width%3D%2266%22%20height%3D%2266%22%20rx%3D%2220%22%20fill%3D%22%23e6f4ff%22%2F%3E%3Cpath%20d%3D%22M36%2055S14%2042%2014%2027c0-13%2016-16%2022-5%206-11%2022-8%2022%205%200%2015-22%2028-22%2028z%22%20fill%3D%22%232d82b5%22%2F%3E%3Cpath%20d%3D%22M22%2031c0-5%205-8%209-5%22%20fill%3D%22none%22%20stroke%3D%22%23fff%22%20stroke-width%3D%223%22%20stroke-linecap%3D%22round%22%2F%3E%3C%2Fsvg%3E");
+  content: url("https://www.figma.com/api/mcp/asset/c0138154-82c7-40f2-baae-eb282d19c40d.svg");
 }
 
 .v2-campaign-single-card:nth-child(2) img {
-  content: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2072%2072%22%20width%3D%2272%22%20height%3D%2272%22%3E%3Crect%20x%3D%223%22%20y%3D%223%22%20width%3D%2266%22%20height%3D%2266%22%20rx%3D%2220%22%20fill%3D%22%23e4f6ed%22%2F%3E%3Ccircle%20cx%3D%2225%22%20cy%3D%2229%22%20r%3D%228%22%20fill%3D%22%23289c7b%22%2F%3E%3Ccircle%20cx%3D%2248%22%20cy%3D%2229%22%20r%3D%228%22%20fill%3D%22%2361c3a2%22%2F%3E%3Cpath%20d%3D%22M10%2053c1-10%207-15%2015-15s14%205%2015%2015M33%2053c1-10%207-15%2015-15s14%205%2015%2015%22%20fill%3D%22none%22%20stroke%3D%22%2321846a%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%2F%3E%3C%2Fsvg%3E");
+  content: url("https://www.figma.com/api/mcp/asset/f198781c-3a83-491a-accd-edb5d32f1dd2.svg");
 }
 
 .v2-campaign-single-card:nth-child(3) img {
-  content: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2072%2072%22%20width%3D%2272%22%20height%3D%2272%22%3E%3Crect%20x%3D%223%22%20y%3D%223%22%20width%3D%2266%22%20height%3D%2266%22%20rx%3D%2220%22%20fill%3D%22%23fff1df%22%2F%3E%3Ccircle%20cx%3D%2236%22%20cy%3D%2236%22%20r%3D%2220%22%20fill%3D%22none%22%20stroke%3D%22%23df9b43%22%20stroke-width%3D%224%22%2F%3E%3Ccircle%20cx%3D%2236%22%20cy%3D%2236%22%20r%3D%2212%22%20fill%3D%22none%22%20stroke%3D%22%23edb65e%22%20stroke-width%3D%224%22%2F%3E%3Ccircle%20cx%3D%2236%22%20cy%3D%2236%22%20r%3D%224%22%20fill%3D%22%23ba6d24%22%2F%3E%3Cpath%20d%3D%22M44%2028l13-13%22%20stroke%3D%22%23ba6d24%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%2F%3E%3C%2Fsvg%3E");
+  content: url("https://www.figma.com/api/mcp/asset/135db3ba-ef4d-419b-ab3e-649e629c334a.svg");
 }
 
 .v2-campaign-single-card:nth-child(4) img {
-  content: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2072%2072%22%20width%3D%2272%22%20height%3D%2272%22%3E%3Crect%20x%3D%223%22%20y%3D%223%22%20width%3D%2266%22%20height%3D%2266%22%20rx%3D%2220%22%20fill%3D%22%23f0e9ff%22%2F%3E%3Cpath%20d%3D%22M39%2010%2019%2038h14l-2%2024%2022-34H39z%22%20fill%3D%22%238061cc%22%2F%3E%3Cpath%20d%3D%22M16%2017l2%205%205%202-5%202-2%205-2-5-5-2%205-2zM54%2048l2%204%204%202-4%202-2%204-2-4-4-2%204-2z%22%20fill%3D%22%23ad97e8%22%2F%3E%3C%2Fsvg%3E");
+  content: url("https://www.figma.com/api/mcp/asset/79d52acf-b29b-430b-8ae9-8eb752675749.svg");
 }
 
 

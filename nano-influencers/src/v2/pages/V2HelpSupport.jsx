@@ -1,20 +1,19 @@
-import { localAsset } from "../assets.js";
 import React from "react";
 import "./v2-help-support.css";
 
 const assets = {
-  brand: localAsset("brand"),
-  profile: localAsset("profile"),
-  notification: localAsset("notification"),
-  dashboard: localAsset("dashboard"),
-  wallet: localAsset("wallet"),
-  analytics: localAsset("analytics"),
-  settings: localAsset("settings"),
-  help: localAsset("help"),
-  logout: localAsset("logout"),
-  collapse: localAsset("collapse"),
-  dateChevron: localAsset("dateChevron"),
-  faqChevron: localAsset("faqChevron"),
+  brand: "https://www.figma.com/api/mcp/asset/47787418-316e-485c-8066-eccf660cd78b.svg",
+  profile: "https://www.figma.com/api/mcp/asset/d52c8739-8de5-4d39-98b8-b4ee70cb2dd4.png",
+  notification: "https://www.figma.com/api/mcp/asset/97a226ef-5f2e-4715-a0e2-6e251958a16c.svg",
+  dashboard: "https://www.figma.com/api/mcp/asset/04a5872e-08b7-4894-9269-2d325e6a023b.svg",
+  wallet: "https://www.figma.com/api/mcp/asset/cf9ac420-e62e-4eca-b131-fba1bd25e006.svg",
+  analytics: "https://www.figma.com/api/mcp/asset/2034b23c-8993-4806-bad7-3fd0dd0d0aed.svg",
+  settings: "https://www.figma.com/api/mcp/asset/81089502-9454-468a-9c5f-c5da7c21eb71.svg",
+  help: "https://www.figma.com/api/mcp/asset/1ecd50a6-4a52-4891-8859-245f2658bb81.svg",
+  logout: "https://www.figma.com/api/mcp/asset/4a1ac011-9d52-44d4-8d23-f32defc4580e.svg",
+  collapse: "https://www.figma.com/api/mcp/asset/f520e936-dfef-4de0-95d9-5f5341e668d5.svg",
+  dateChevron: "https://www.figma.com/api/mcp/asset/de35bbc3-c546-4c6c-a7f0-d9cd0cc7efc6.svg",
+  faqChevron: "https://www.figma.com/api/mcp/asset/a9c71857-53cb-47a4-a1a6-d38c120d1851.svg",
 };
 
 const faqs = [

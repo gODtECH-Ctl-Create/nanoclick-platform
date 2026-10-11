@@ -1,4 +1,3 @@
-import { localAsset } from "../assets.js";
 import React, { useState } from "react";
 import "./v2-landing.css";
 import {
@@ -13,26 +12,26 @@ import {
 } from "./LandingSections.jsx";
 
 const assets = {
-  brand: localAsset("brand"),
-  brandMobile: localAsset("brandMobile"),
-  menu: localAsset("menu"),
-  close: localAsset("close"),
-  live: localAsset("live"),
-  hero1: localAsset("hero1"),
-  hero2: localAsset("hero2"),
-  hero3: localAsset("hero3"),
-  hero4: localAsset("hero4"),
-  hero5: localAsset("hero5"),
-  hero6: localAsset("hero6"),
-  mobile1: localAsset("mobile1"),
-  mobile2: localAsset("mobile2"),
-  mobile3: localAsset("mobile3"),
-  mobile4: localAsset("mobile4"),
-  mobile5: localAsset("mobile5"),
-  statBusiness: localAsset("statBusiness"),
-  statPeople: localAsset("statPeople"),
-  statFlag: localAsset("statFlag"),
-  statRate: localAsset("statRate"),
+  brand: "https://www.figma.com/api/mcp/asset/83fa14d8-cb86-4da9-9463-7908fb31e2ee.svg",
+  brandMobile: "https://www.figma.com/api/mcp/asset/fdbda33f-2447-4f09-b859-dc44b14ef95a.svg",
+  menu: "https://www.figma.com/api/mcp/asset/c6d05699-fae1-4eb8-82e9-95bbe5eed195.svg",
+  close: "https://www.figma.com/api/mcp/asset/befb9175-bba0-42d6-93fe-7d02b6bcfde5.svg",
+  live: "https://www.figma.com/api/mcp/asset/0d734788-7869-4fcb-b568-f3d34d0075c5.svg",
+  hero1: "https://www.figma.com/api/mcp/asset/493dc80b-251a-4be3-a6b4-80ab1b7115b9.png",
+  hero2: "https://www.figma.com/api/mcp/asset/03d7477a-55ab-4b57-91dc-238b751f33a5.png",
+  hero3: "https://www.figma.com/api/mcp/asset/866bba81-5f01-4075-a25e-1310aaeb231d.png",
+  hero4: "https://www.figma.com/api/mcp/asset/964c4204-9d5a-4a4e-ab76-73585838cf4f.png",
+  hero5: "https://www.figma.com/api/mcp/asset/b600a918-d235-43d2-b9fb-73b474a8eeb8.png",
+  hero6: "https://www.figma.com/api/mcp/asset/079a883f-35ac-403e-8ca4-a668f5adaffd.png",
+  mobile1: "https://www.figma.com/api/mcp/asset/4f88bc59-d4ae-42ef-a508-e9d3128c0bfd.png",
+  mobile2: "https://www.figma.com/api/mcp/asset/ce7928ad-40b0-41a5-9307-ad56a6bfc36b.png",
+  mobile3: "https://www.figma.com/api/mcp/asset/06a7f89e-f806-47b9-989f-61bd1d000af7.png",
+  mobile4: "https://www.figma.com/api/mcp/asset/49647e37-f720-49fc-9501-0b0e81110db5.png",
+  mobile5: "https://www.figma.com/api/mcp/asset/29998098-cf7a-4381-8210-efc812739fe0.png",
+  statBusiness: "https://www.figma.com/api/mcp/asset/98e000f2-7897-4bba-8d2a-b73e64c90ced.svg",
+  statPeople: "https://www.figma.com/api/mcp/asset/6eefe1d9-0def-4419-8804-eb5082d67f20.svg",
+  statFlag: "https://www.figma.com/api/mcp/asset/75eb2531-070a-4f1c-9eeb-48c3248d0260.svg",
+  statRate: "https://www.figma.com/api/mcp/asset/5130a3b5-e539-4226-a4ad-aaa24d37fb1d.svg",
 };
 
 const navItems = [

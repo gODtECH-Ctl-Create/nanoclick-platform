@@ -1,56 +1,55 @@
-import { localAsset } from "../assets.js";
 import React, { useState } from "react";
 import "./landing-sections.css";
 
 const serviceAssets = {
-  growth: localAsset("growth"),
-  word: localAsset("word"),
-  task: localAsset("task"),
-  single: localAsset("single"),
+  growth: "https://www.figma.com/api/mcp/asset/d8caa1a8-3518-4705-b1e6-c59ab095cd21.svg",
+  word: "https://www.figma.com/api/mcp/asset/7ca48941-6cdc-4c5c-9812-eac6fb5a1862.svg",
+  task: "https://www.figma.com/api/mcp/asset/95f0bc6d-a7bc-4c24-a0a9-fa2329e78d71.svg",
+  single: "https://www.figma.com/api/mcp/asset/658da907-3229-4f4b-8250-b94794c7d41d.svg",
 };
 
 const testimonialAssets = {
-  ada: localAsset("ada"),
-  kwame: localAsset("kwame"),
-  olivia: localAsset("olivia"),
-  play: localAsset("play"),
-  star: localAsset("star"),
-  left: localAsset("left"),
-  right: localAsset("right"),
+  ada: "https://www.figma.com/api/mcp/asset/9aab1bf2-6fd6-44d8-8d56-c881909ebc3f.png",
+  kwame: "https://www.figma.com/api/mcp/asset/ee0a7fd6-7166-4da7-82a3-797cb4163b43.png",
+  olivia: "https://www.figma.com/api/mcp/asset/24dca251-f977-48d0-912c-f442a61e2f81.png",
+  play: "https://www.figma.com/api/mcp/asset/d19d0b22-f1ae-43fd-b5ad-07ef738db374.svg",
+  star: "https://www.figma.com/api/mcp/asset/68e1537a-4cf9-40c9-a660-64d8e5d7811c.svg",
+  left: "https://www.figma.com/api/mcp/asset/9000a621-bb74-4a4f-8e1f-6963e5c94d13.svg",
+  right: "https://www.figma.com/api/mcp/asset/19fc5889-1938-4089-997d-b63a990ff699.svg",
 };
 
 const hiwAssets = {
-  desktopDemo: localAsset("desktopDemo"),
-  mobileDemo: localAsset("mobileDemo"),
+  desktopDemo: "https://www.figma.com/api/mcp/asset/a961277d-c8bb-4d8d-82cb-613cab449dbd.png",
+  mobileDemo: "https://www.figma.com/api/mcp/asset/16fb3528-5d59-42e5-acfd-81df27cf8377.png",
 };
 
 const audienceAssets = [
-  localAsset("visual"),
-  localAsset("visual"),
-  localAsset("visual"),
-  localAsset("visual"),
-  localAsset("visual"),
-  localAsset("visual"),
+  "https://www.figma.com/api/mcp/asset/bf61e394-6611-448e-bfc3-23b7cc06bf8c.png",
+  "https://www.figma.com/api/mcp/asset/aca06357-5f38-43ad-a71a-8c4662d1cb01.png",
+  "https://www.figma.com/api/mcp/asset/f8dd2618-7a05-4cb8-9ce1-807fcb7bc427.png",
+  "https://www.figma.com/api/mcp/asset/48c9e039-d313-4a3b-9c56-5d1ec50b5776.png",
+  "https://www.figma.com/api/mcp/asset/afa573da-9604-46d3-ad2b-3e6b6ee54cdb.png",
+  "https://www.figma.com/api/mcp/asset/8af6dcc9-a82c-40c4-a2d9-de7c0547ee58.png",
 ];
 
 const specialAssets = {
-  crypto: localAsset("crypto"),
-  ideas: localAsset("ideas"),
-  website: localAsset("website"),
-  star: localAsset("star"),
+  crypto: "https://www.figma.com/api/mcp/asset/54646c46-3601-423c-9166-9495f1d7664f.svg",
+  ideas: "https://www.figma.com/api/mcp/asset/b5727c87-7aeb-451a-a6d9-32af2149fff3.svg",
+  website: "https://www.figma.com/api/mcp/asset/a2417d29-eff4-4874-bfee-29426aa4d63d.svg",
+  star: "https://www.figma.com/api/mcp/asset/112662d4-0c29-4e2a-b23a-90595243812e.svg",
 };
 
 const faqAssets = {
-  down: localAsset("down"),
-  up: localAsset("up"),
+  down: "https://www.figma.com/api/mcp/asset/96fad2f9-2fe4-46d0-95e2-544ef5e7105d.svg",
+  up: "https://www.figma.com/api/mcp/asset/e5973652-b4a4-45d7-b1f7-78bbf6d764fc.svg",
 };
 
 const footerAssets = {
-  brand: localAsset("brand"),
-  x: localAsset("x"),
-  facebook: localAsset("facebook"),
-  youtube: localAsset("youtube"),
-  instagram: localAsset("instagram"),
+  brand: "https://www.figma.com/api/mcp/asset/33a7ddc5-d395-4fa8-ae5e-e0e566995c21.svg",
+  x: "https://www.figma.com/api/mcp/asset/4f98241c-f970-43fb-a755-60c03aa6cc42.svg",
+  facebook: "https://www.figma.com/api/mcp/asset/7c0a190f-e55c-4afc-8fbc-0543b23a3f05.svg",
+  youtube: "https://www.figma.com/api/mcp/asset/3a602767-2623-4884-9587-220f2fef0aa0.svg",
+  instagram: "https://www.figma.com/api/mcp/asset/1017b2e2-dfaa-483a-a244-8c7f0dac0c03.svg",
 };
 
 const services = [

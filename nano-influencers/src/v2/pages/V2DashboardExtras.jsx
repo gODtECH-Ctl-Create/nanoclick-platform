@@ -1,26 +1,25 @@
-import { localAsset } from "../assets.js";
 import React, { useRef, useState } from "react";
 import "./v2-dashboard-extras.css";
 
 const assets = {
-  back: localAsset("back"),
-  share: localAsset("share"),
-  eye: localAsset("eye"),
-  uploadDoc: localAsset("uploadDoc"),
-  verify: localAsset("verify"),
-  copy: localAsset("copy"),
-  award: localAsset("award"),
-  upload: localAsset("upload"),
-  locked: localAsset("locked"),
-  blender: localAsset("blender"),
-  carouselLeft: localAsset("carouselLeft"),
-  carouselRight: localAsset("carouselRight"),
-  video: localAsset("video"),
-  purchase: localAsset("purchase"),
-  send: localAsset("send"),
-  refer: localAsset("refer"),
-  giveawayUpload: localAsset("giveawayUpload"),
-  accordion: localAsset("accordion"),
+  back: "https://www.figma.com/api/mcp/asset/a6141b2a-8333-46fb-80a0-1421dcdd6c2a.svg",
+  share: "https://www.figma.com/api/mcp/asset/264a8831-aa8a-4d2c-91ed-b035b0283384.svg",
+  eye: "https://www.figma.com/api/mcp/asset/cd04b014-fcb2-4567-bb9e-eb985cc2f3f1.svg",
+  uploadDoc: "https://www.figma.com/api/mcp/asset/ffce7c1e-77c1-463f-a0a5-b9dfee2b5c71.svg",
+  verify: "https://www.figma.com/api/mcp/asset/0c193943-ebb3-4472-be4e-30c848513a5c.svg",
+  copy: "https://www.figma.com/api/mcp/asset/38aaa9c2-809e-49b4-8aba-6b2f3ae45f78.svg",
+  award: "https://www.figma.com/api/mcp/asset/3c5fca23-b0e0-4318-94b1-2e9fdeddb99e.svg",
+  upload: "https://www.figma.com/api/mcp/asset/07c6d67a-7a26-4ee0-9c14-e44b42a43acd.svg",
+  locked: "https://www.figma.com/api/mcp/asset/4047a69e-2fef-4534-aae2-0ea3ffb6d0b9.svg",
+  blender: "https://www.figma.com/api/mcp/asset/be1ab207-b643-4e65-92f8-156bad7d2a8c.png",
+  carouselLeft: "https://www.figma.com/api/mcp/asset/18de4064-8092-4412-ba56-f82794b917d1.svg",
+  carouselRight: "https://www.figma.com/api/mcp/asset/69c4c5fe-939b-4992-aede-789731743264.svg",
+  video: "https://www.figma.com/api/mcp/asset/b80d8eba-c0ee-4f39-b337-87c834ce11a7.svg",
+  purchase: "https://www.figma.com/api/mcp/asset/876f5b4c-8921-488a-a453-6bad2df6996a.svg",
+  send: "https://www.figma.com/api/mcp/asset/b96778ae-747d-4dc4-b0dc-ef2b36fbd2f4.svg",
+  refer: "https://www.figma.com/api/mcp/asset/39d7e089-f902-4965-a65c-c1d563ee21d4.svg",
+  giveawayUpload: "https://www.figma.com/api/mcp/asset/94a69b9d-8d68-4a6b-ac94-c26e0f281970.svg",
+  accordion: "https://www.figma.com/api/mcp/asset/cb9a8b1e-9105-4b5c-a91c-dbf1133ff7b6.svg",
 };
 
 function BackHeader() {

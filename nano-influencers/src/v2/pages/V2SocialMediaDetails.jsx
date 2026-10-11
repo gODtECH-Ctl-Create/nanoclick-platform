@@ -1,17 +1,16 @@
-import { localAsset } from "../assets.js";
 import React, { useState } from "react";
 import "./v2-social-media-details.css";
 
 const assets = {
-  arrowLeft: localAsset("arrowLeft"),
-  dropdown: localAsset("dropdown"),
-  close: localAsset("close"),
-  facebook: localAsset("facebook"),
-  youtube: localAsset("youtube"),
-  twitter: localAsset("twitter"),
-  instagram: localAsset("instagram"),
-  tiktok: localAsset("tiktok"),
-  linkedin: localAsset("linkedin"),
+  arrowLeft: "https://www.figma.com/api/mcp/asset/409bb022-263e-494c-887a-98c2a5253675.svg",
+  dropdown: "https://www.figma.com/api/mcp/asset/3a8a18f4-2cf1-461e-86d7-ddc288ec03c7.svg",
+  close: "https://www.figma.com/api/mcp/asset/f1ab7384-bb5e-4372-a1ef-5914c423f29b.svg",
+  facebook: "https://www.figma.com/api/mcp/asset/18ed73d2-78ba-4cb9-92bd-418b0981ac9f.svg",
+  youtube: "https://www.figma.com/api/mcp/asset/a6102040-3c0d-4d32-ac10-3685177f5816.svg",
+  twitter: "https://www.figma.com/api/mcp/asset/3947db1e-7917-4d41-ad80-6754bee33280.svg",
+  instagram: "https://www.figma.com/api/mcp/asset/3371a2a1-dea8-4413-9c23-65b81d86786d.svg",
+  tiktok: "https://www.figma.com/api/mcp/asset/519ecd26-03a8-486e-97a8-72908517f89c.svg",
+  linkedin: "https://www.figma.com/api/mcp/asset/e760a03e-b975-4667-82a3-fa3ddf509251.svg",
 };
 
 const categoryOptions = [
