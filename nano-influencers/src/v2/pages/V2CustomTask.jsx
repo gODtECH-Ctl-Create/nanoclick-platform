@@ -1,16 +1,17 @@
+import { localAsset } from "../assets.js";
 import React, { useMemo, useRef, useState } from "react";
 import "./v2-custom-task.css";
 
 const assets = {
-  arrowLeft: "https://www.figma.com/api/mcp/asset/05c2ead2-be79-4029-a269-d25071e2a7e5.svg",
-  dropdown: "https://www.figma.com/api/mcp/asset/093c0b8a-81c4-4913-ada8-d1e55f27d79a.svg",
-  calendar: "https://www.figma.com/api/mcp/asset/1294e60a-b34b-496c-be85-e1df621288c8.svg",
-  clock: "https://www.figma.com/api/mcp/asset/64942235-2efd-4bf7-b550-b1982a446f5f.svg",
-  demoDot: "https://www.figma.com/api/mcp/asset/d53c0ec0-99ec-4c5d-a650-0c9658e78e88.svg",
-  videoPreview: "https://www.figma.com/api/mcp/asset/e0583601-564c-4fd4-a8a8-fbf10dce4afd.png",
-  copy: "https://www.figma.com/api/mcp/asset/3d36cb6d-9b0c-43cc-8b96-6223d45cf64a.svg",
-  download: "https://www.figma.com/api/mcp/asset/55b5cf04-e24e-4a1b-861e-621a8cce0544.svg",
-  upload: "https://www.figma.com/api/mcp/asset/1e442cc1-042b-4047-9050-de519d9204ac.svg",
+  arrowLeft: localAsset("arrowLeft"),
+  dropdown: localAsset("dropdown"),
+  calendar: localAsset("calendar"),
+  clock: localAsset("clock"),
+  demoDot: localAsset("demoDot"),
+  videoPreview: localAsset("videoPreview"),
+  copy: localAsset("copy"),
+  download: localAsset("download"),
+  upload: localAsset("upload"),
 };
 
 const taskOptions = [1, 2, 3, 4, 5];

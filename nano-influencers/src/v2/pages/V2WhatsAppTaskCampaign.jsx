@@ -1,30 +1,31 @@
+import { localAsset } from "../assets.js";
 import React, { useMemo, useRef, useState } from "react";
 import "./v2-social-task-campaign.css";
 import "./v2-whatsapp-task.css";
 
 const assets = {
-  arrowLeft: "https://www.figma.com/api/mcp/asset/9da02c4b-dd26-4221-be7c-001403b84f46.svg",
-  calendar: "https://www.figma.com/api/mcp/asset/66d16d85-50e0-400a-a671-711c0ddf5554.svg",
-  clock: "https://www.figma.com/api/mcp/asset/b4490f83-5f3a-4203-83d0-f763c96dfac6.svg",
-  joinChannel: "https://www.figma.com/api/mcp/asset/42d20fcf-4c0d-4665-a9bb-39101f87b3a3.svg",
-  joinGroup: "https://www.figma.com/api/mcp/asset/80b152b6-ff18-44e9-ba8a-2a8976ec4f08.svg",
-  share: "https://www.figma.com/api/mcp/asset/cee7fdfd-26c4-4135-abd0-38f8d17e9aca.svg",
-  community: "https://www.figma.com/api/mcp/asset/75e5fa32-e865-43ea-b72d-087b335f6010.svg",
-  call: "https://www.figma.com/api/mcp/asset/ec5bd309-9b2e-40a3-85ea-e4aaece2772a.svg",
-  follow: "https://www.figma.com/api/mcp/asset/73793ce8-4e55-446c-902a-9a40554af7b2.svg",
-  save: "https://www.figma.com/api/mcp/asset/8346f662-d122-44a6-aa76-fe8755a738ea.svg",
-  report: "https://www.figma.com/api/mcp/asset/0cb7d0bc-bd2f-4052-a68a-fc6bb0774f23.svg",
-  telegramBot: "https://www.figma.com/api/mcp/asset/a76cad06-0ad9-45ca-a6cd-c5f7d64a5cee.svg",
-  telegramGroup: "https://www.figma.com/api/mcp/asset/036d13a5-d412-40af-91c3-7cfa46fd2697.svg",
-  telegramShare: "https://www.figma.com/api/mcp/asset/efbda024-aeb9-460d-ba64-ac58540b5fc4.svg",
-  telegramCommunity: "https://www.figma.com/api/mcp/asset/4766725e-6592-4e2f-9278-5519f4eb1ba1.svg",
-  telegramCall: "https://www.figma.com/api/mcp/asset/c01b96f6-a969-48e1-abe5-e8ba640c169d.svg",
-  telegramSubscribe: "https://www.figma.com/api/mcp/asset/c2b3c502-ef8d-4e24-b947-eb9f723e4b37.svg",
-  telegramSave: "https://www.figma.com/api/mcp/asset/2196fb98-a161-4067-90c0-917c20a4bc9c.svg",
-  telegramReport: "https://www.figma.com/api/mcp/asset/266c7473-247f-4009-85cb-bca2c357357f.svg",
-  copy: "https://www.figma.com/api/mcp/asset/5163e22b-387e-4c67-8376-bad066a7bdd6.svg",
-  download: "https://www.figma.com/api/mcp/asset/adfb4895-d4d4-422e-a8a0-897d5f99a895.svg",
-  upload: "https://www.figma.com/api/mcp/asset/634f521b-d977-4a50-9598-a939db371ac5.svg",
+  arrowLeft: localAsset("arrowLeft"),
+  calendar: localAsset("calendar"),
+  clock: localAsset("clock"),
+  joinChannel: localAsset("joinChannel"),
+  joinGroup: localAsset("joinGroup"),
+  share: localAsset("share"),
+  community: localAsset("community"),
+  call: localAsset("call"),
+  follow: localAsset("follow"),
+  save: localAsset("save"),
+  report: localAsset("report"),
+  telegramBot: localAsset("telegramBot"),
+  telegramGroup: localAsset("telegramGroup"),
+  telegramShare: localAsset("telegramShare"),
+  telegramCommunity: localAsset("telegramCommunity"),
+  telegramCall: localAsset("telegramCall"),
+  telegramSubscribe: localAsset("telegramSubscribe"),
+  telegramSave: localAsset("telegramSave"),
+  telegramReport: localAsset("telegramReport"),
+  copy: localAsset("copy"),
+  download: localAsset("download"),
+  upload: localAsset("upload"),
 };
 
 const whatsappTasks = [

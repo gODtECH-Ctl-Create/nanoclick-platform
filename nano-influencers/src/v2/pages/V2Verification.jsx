@@ -1,10 +1,11 @@
+import { localAsset } from "../assets.js";
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import "./v2-verification.css";
 
 const assets = {
-  brandIcon: "https://www.figma.com/api/mcp/asset/e0d465ce-7a28-4e6c-b8e0-4f9cc4f01c96.svg",
-  countryArrow: "https://www.figma.com/api/mcp/asset/0d3204b0-a836-447b-9431-f83cbce4eec3.svg",
-  confirmation: "https://www.figma.com/api/mcp/asset/94edc3a5-36db-456c-b6c8-550cb66949bd.png",
+  brandIcon: localAsset("brandIcon"),
+  countryArrow: localAsset("countryArrow"),
+  confirmation: localAsset("confirmation"),
 };
 
 function Brand() {

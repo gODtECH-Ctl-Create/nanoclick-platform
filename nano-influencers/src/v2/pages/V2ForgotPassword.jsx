@@ -1,12 +1,13 @@
+import { localAsset } from "../assets.js";
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import "./v2-auth.css";
 import "./v2-forgot-password.css";
 
 const assets = {
-  brand: "https://www.figma.com/api/mcp/asset/209907eb-2d3a-4fc9-b7da-eae602601fca.svg",
-  eyeSlash: "https://www.figma.com/api/mcp/asset/25f8873e-0f48-489d-bb2c-441fa944ec3e.svg",
-  confirmation: "https://www.figma.com/api/mcp/asset/ba9fd023-0c5b-499e-8b89-2f10ab0f1c28.png",
+  brand: localAsset("brand"),
+  eyeSlash: localAsset("eyeSlash"),
+  confirmation: localAsset("confirmation"),
 };
 
 function go(path) {

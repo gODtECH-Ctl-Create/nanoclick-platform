@@ -1,21 +1,22 @@
+import { localAsset } from "../assets.js";
 import React, { useMemo, useState } from "react";
 import "./v2-subscription-flow.css";
 
 const assets = {
-  arrowLeft: "https://www.figma.com/api/mcp/asset/b40f98c9-e608-4e9b-b666-541208cb7367.svg",
-  category: "https://www.figma.com/api/mcp/asset/1f53a510-2746-4e00-8a7a-1c8b9a700f91.svg",
-  focus: "https://www.figma.com/api/mcp/asset/bf3c2d11-80e5-429e-b524-5fb5b6604adf.svg",
-  platform: "https://www.figma.com/api/mcp/asset/9bf7e7ad-fe54-4239-abf1-6045488dd6b2.svg",
-  link: "https://www.figma.com/api/mcp/asset/ff1a64ab-5036-4db6-940b-42f7053bf328.svg",
-  location: "https://www.figma.com/api/mcp/asset/98d2524b-fb67-4d17-926a-cf59f35a3aab.svg",
-  notes: "https://www.figma.com/api/mcp/asset/0c87a3eb-5851-4a14-ba6e-7aaf47978d3b.svg",
-  referral: "https://www.figma.com/api/mcp/asset/b8dc1e72-c944-4196-88e6-a7924d0f10f2.svg",
-  promotion: "https://www.figma.com/api/mcp/asset/f25591b4-596f-4be7-9962-5950945af352.svg",
-  walletTick: "https://www.figma.com/api/mcp/asset/b4ad821f-da87-408e-8512-56b70799f698.svg",
-  insufficient: "https://www.figma.com/api/mcp/asset/4d47d69c-8328-4235-a716-6191bf21a89b.png",
-  balanceDecor: "https://www.figma.com/api/mcp/asset/d0dab94b-19bf-4a0b-b812-418eb2eed6c1.svg",
-  success: "https://www.figma.com/api/mcp/asset/17b94008-b4f7-4102-a6f7-623f049d7aff.png",
-  gift: "https://www.figma.com/api/mcp/asset/9d92910f-aec1-4ae5-8970-81a987747dad.svg",
+  arrowLeft: localAsset("arrowLeft"),
+  category: localAsset("category"),
+  focus: localAsset("focus"),
+  platform: localAsset("platform"),
+  link: localAsset("link"),
+  location: localAsset("location"),
+  notes: localAsset("notes"),
+  referral: localAsset("referral"),
+  promotion: localAsset("promotion"),
+  walletTick: localAsset("walletTick"),
+  insufficient: localAsset("insufficient"),
+  balanceDecor: localAsset("balanceDecor"),
+  success: localAsset("success"),
+  gift: localAsset("gift"),
 };
 
 const fallbackDraft = {
