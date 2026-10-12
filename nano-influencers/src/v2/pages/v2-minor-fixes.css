@@ -20,19 +20,19 @@
 
 /* Exact Figma artwork for the four Single Task service cards (node 344:12715). */
 .v2-campaign-single-card:nth-child(1) img {
-  content: url("https://www.figma.com/api/mcp/asset/c0138154-82c7-40f2-baae-eb282d19c40d.svg");
+  content: url("/assets/nano-v2-app/campaign-google-form.svg");
 }
 
 .v2-campaign-single-card:nth-child(2) img {
-  content: url("https://www.figma.com/api/mcp/asset/f198781c-3a83-491a-accd-edb5d32f1dd2.svg");
+  content: url("/assets/nano-v2/special-website.svg");
 }
 
 .v2-campaign-single-card:nth-child(3) img {
-  content: url("https://www.figma.com/api/mcp/asset/135db3ba-ef4d-419b-ab3e-649e629c334a.svg");
+  content: url("/assets/nano-v2/special-crypto.svg");
 }
 
 .v2-campaign-single-card:nth-child(4) img {
-  content: url("https://www.figma.com/api/mcp/asset/79d52acf-b29b-430b-8ae9-8eb752675749.svg");
+  content: url("/assets/nano-v2/special-ideas.svg");
 }
 
 
