@@ -99,7 +99,7 @@ function askToLogout(control) {
     ".v2-help-logout img",
   ].join(","));
   const icon = dialog.querySelector(".v2-logout-confirm__icon img");
-  if (icon) icon.src = pageIcon?.getAttribute("src") || "https://www.figma.com/api/mcp/asset/5870bfc9-512b-4a93-a3cc-d7de80bf4f0b.svg";
+  if (icon) icon.src = pageIcon?.getAttribute("src") || "/assets/nano-v2-app/dashboard-logout.svg";
   dialog.hidden = false;
   document.body.style.overflow = "hidden";
   window.setTimeout(() => dialog.querySelector(".v2-logout-confirm__cancel")?.focus(), 0);
