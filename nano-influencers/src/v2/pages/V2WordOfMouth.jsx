@@ -1,22 +1,23 @@
 import React, { useMemo, useRef, useState } from "react";
 import "./v2-word-of-mouth.css";
 
+const ASSET_BASE = "/assets/nano-v2-app/";
 const assets = {
-  arrowLeft: "https://www.figma.com/api/mcp/asset/c4e9bbd1-524f-45ec-a3f4-16ad4de35b5c.svg",
-  dropdown: "https://www.figma.com/api/mcp/asset/f8b92fbd-7c6d-41bd-a93c-41b884a9b17a.svg",
-  calendar: "https://www.figma.com/api/mcp/asset/80e5ffa3-554e-489f-b641-dbd3d70401dd.svg",
-  clock: "https://www.figma.com/api/mcp/asset/3a75cb17-1b66-4a56-ab24-16b235a118ca.svg",
-  upload: "https://www.figma.com/api/mcp/asset/1eee3c57-bb75-4a8c-adac-6245553012e4.svg",
-  result: "https://www.figma.com/api/mcp/asset/a4ba356c-e3fd-4db9-96bf-57eb12013ef1.svg",
-  creative: "https://www.figma.com/api/mcp/asset/f118542d-02b6-429d-9fed-dac1c39d48cf.png",
-  megaphone: "https://www.figma.com/api/mcp/asset/f39513ec-fa05-4925-a077-15b3b677b6a1.svg",
-  radar: "https://www.figma.com/api/mcp/asset/b9637bcd-0a73-4f40-9389-72aed0020f46.svg",
-  link: "https://www.figma.com/api/mcp/asset/df85063e-7a9f-41fa-bb15-dc10c511ebb9.svg",
-  schedule: "https://www.figma.com/api/mcp/asset/92e3eef2-a418-4aa1-aa62-730d06d5581b.svg",
-  budget: "https://www.figma.com/api/mcp/asset/182381b7-a1d5-46a6-8771-222be30ffa62.svg",
-  reach: "https://www.figma.com/api/mcp/asset/8cb50f68-1b94-4cca-b8e9-cc3af561b72f.svg",
-  impressions: "https://www.figma.com/api/mcp/asset/9a01fe40-2536-4ff6-b783-94dfdadb40d8.svg",
-  wallet: "https://www.figma.com/api/mcp/asset/99e2a83f-c575-43ee-a573-bbe6ef46e321.svg",
+  arrowLeft: `${ASSET_BASE}custom-task-arrow-left.svg`,
+  dropdown: `${ASSET_BASE}custom-task-dropdown.svg`,
+  calendar: `${ASSET_BASE}custom-task-calendar.svg`,
+  clock: `${ASSET_BASE}custom-task-clock.svg`,
+  upload: `${ASSET_BASE}word-of-mouth-upload.svg`,
+  result: `${ASSET_BASE}word-of-mouth-result.svg`,
+  creative: `${ASSET_BASE}word-of-mouth-creative.png`,
+  megaphone: `${ASSET_BASE}word-of-mouth-megaphone.svg`,
+  radar: `${ASSET_BASE}word-of-mouth-radar-2.svg`,
+  link: `${ASSET_BASE}word-of-mouth-link.svg`,
+  schedule: `${ASSET_BASE}custom-task-calendar.svg`,
+  budget: `${ASSET_BASE}word-of-mouth-budget.svg`,
+  reach: `${ASSET_BASE}word-of-mouth-reach.svg`,
+  impressions: `${ASSET_BASE}word-of-mouth-impressions.svg`,
+  wallet: `${ASSET_BASE}word-of-mouth-wallet.svg`,
 };
 
 const purposes = [
