@@ -8,7 +8,7 @@ const assets = {
   calendar: `${ASSET_BASE}custom-task-calendar.svg`,
   clock: `${ASSET_BASE}custom-task-clock.svg`,
   demoDot: `${ASSET_BASE}custom-task-demo-dot.svg`,
-  videoPreview: `${ASSET_BASE}custom-task-video-preview.png`,
+  videoPreview: `${ASSET_BASE}custom-task-video-preview.svg`,
   copy: `${ASSET_BASE}custom-task-copy.svg`,
   download: `${ASSET_BASE}custom-task-download.svg`,
   upload: `${ASSET_BASE}custom-task-upload.svg`,
