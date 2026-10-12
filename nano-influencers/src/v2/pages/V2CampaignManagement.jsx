@@ -2,25 +2,26 @@ import React, { useRef, useState } from "react";
 import { Button } from "../components/ui/Button.jsx";
 import "./v2-campaign-management.css";
 
+const ASSET_BASE = "/assets/nano-v2-app/";
 const assets = {
-  back: "https://www.figma.com/api/mcp/asset/ebcb86b6-31e4-4015-8b68-90796b341bd4.svg",
-  trend: "https://www.figma.com/api/mcp/asset/905c6c2d-9333-414e-bcd0-f2e1e293c681.svg",
-  pause: "https://www.figma.com/api/mcp/asset/68ae6a79-8102-49c4-9aca-255f59331b05.svg",
-  edit: "https://www.figma.com/api/mcp/asset/7a40f079-3c84-46f1-9fd7-8fc3a1792e5c.svg",
-  trash: "https://www.figma.com/api/mcp/asset/5c2a6a14-6f5a-495d-a6f2-4221bddbe77c.svg",
-  x: "https://www.figma.com/api/mcp/asset/95ae29e0-e50e-4fb6-8ab2-95b5ad72243d.svg",
-  link: "https://www.figma.com/api/mcp/asset/51963142-b644-44b1-b918-a246546ae481.svg",
-  music: "https://www.figma.com/api/mcp/asset/0e9b434e-aa9f-4113-8d26-d1d9b5eada1c.svg",
-  notificationTrash: "https://www.figma.com/api/mcp/asset/e44249a4-5efd-448f-b6e5-8fda36c3a393.svg",
-  like: "https://www.figma.com/api/mcp/asset/1b6915cd-1e94-424e-be86-8db4cf2dc460.svg",
-  notificationPause: "https://www.figma.com/api/mcp/asset/1858cfb3-8f78-4513-a834-7ff39a672358.svg",
-  dislike: "https://www.figma.com/api/mcp/asset/cf694662-7dd9-4434-a74c-2815c867452a.svg",
-  filter: "https://www.figma.com/api/mcp/asset/eaddfcba-c39f-446b-a5c1-22d3e05936db.svg",
-  play: "https://www.figma.com/api/mcp/asset/0578ed0d-a7fd-4646-8c12-65b1557e15bb.svg",
-  notificationEdit: "https://www.figma.com/api/mcp/asset/0249de64-0458-49d9-ba90-bfcc3ebc0366.svg",
-  cashbackDecor: "https://www.figma.com/api/mcp/asset/ba4d7d7f-ad02-446f-b088-a8ce85e962b3.svg",
-  upload: "https://www.figma.com/api/mcp/asset/4e816430-4281-4a0d-90fb-951a58155ebd.svg",
-  success: "https://www.figma.com/api/mcp/asset/7d3c490e-d177-4362-a0d2-ee4c9676eda6.png",
+  back: `${ASSET_BASE}campaign-back.svg`,
+  trend: `${ASSET_BASE}campaign-trend.svg`,
+  pause: `${ASSET_BASE}campaign-pause.svg`,
+  edit: `${ASSET_BASE}campaign-edit.svg`,
+  trash: `${ASSET_BASE}campaign-trash.svg`,
+  x: `${ASSET_BASE}campaign-x.svg`,
+  link: `${ASSET_BASE}campaign-link.svg`,
+  music: `${ASSET_BASE}campaign-music.svg`,
+  notificationTrash: `${ASSET_BASE}campaign-notification-trash.svg`,
+  like: `${ASSET_BASE}campaign-notification-like.svg`,
+  notificationPause: `${ASSET_BASE}campaign-notification-pause.svg`,
+  dislike: `${ASSET_BASE}campaign-notification-dislike.svg`,
+  filter: `${ASSET_BASE}campaign-filter-icon.svg`,
+  play: `${ASSET_BASE}campaign-notification-play.svg`,
+  notificationEdit: `${ASSET_BASE}campaign-notification-edit.svg`,
+  cashbackDecor: `${ASSET_BASE}campaign-cashback-decor.svg`,
+  upload: `${ASSET_BASE}campaign-upload.svg`,
+  success: `${ASSET_BASE}auth-confirmation.png`,
 };
 
 const createdText = "Created: 7/12/25 ·  Time: 7:35pm";
