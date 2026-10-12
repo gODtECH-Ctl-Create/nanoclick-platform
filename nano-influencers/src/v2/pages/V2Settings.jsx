@@ -2,27 +2,28 @@ import React, { useMemo, useRef, useState } from "react";
 import { Button } from "../components/ui/Button.jsx";
 import "./v2-settings.css";
 
+const ASSET_BASE = "/assets/nano-v2-app/";
 const assets = {
-  brand: "https://www.figma.com/api/mcp/asset/ca491532-c959-4b80-a885-fa5c6deb9dcb.svg",
-  profileSmall: "https://www.figma.com/api/mcp/asset/0499dd02-1227-4a16-af8c-18b95f1e7b7b.png",
-  profileLarge: "https://www.figma.com/api/mcp/asset/cd48c749-667c-4625-8972-10ca723a1b20.png",
-  notification: "https://www.figma.com/api/mcp/asset/1496abe0-40db-418b-bcd0-a7b5362e7a5f.svg",
-  dashboard: "https://www.figma.com/api/mcp/asset/309f3d9c-1f12-438e-90b3-9174a76c0bbf.svg",
-  wallet: "https://www.figma.com/api/mcp/asset/7d3db0fb-4905-407b-b18a-caecc2dc3442.svg",
-  analytics: "https://www.figma.com/api/mcp/asset/f3a22570-a018-47b1-a206-caf86658d5d0.svg",
-  settings: "https://www.figma.com/api/mcp/asset/fa214092-7920-4edb-a619-93c003b0e549.svg",
-  help: "https://www.figma.com/api/mcp/asset/6d894353-4fb6-4c25-90fd-66788af79179.svg",
-  logout: "https://www.figma.com/api/mcp/asset/0b869f84-b3db-4bd6-b100-ec61525450c0.svg",
-  collapse: "https://www.figma.com/api/mcp/asset/602afcf1-dc1f-415e-95a3-d93dbd2458d0.svg",
-  dateChevron: "https://www.figma.com/api/mcp/asset/feec6c27-10b4-4083-8c9f-7bce59e7a3e8.svg",
-  profileTab: "https://www.figma.com/api/mcp/asset/d48e80d0-9e2c-4b80-8425-3f3c87837d71.svg",
-  notificationTab: "https://www.figma.com/api/mcp/asset/6f06083f-a7bb-4a9f-bcaa-8ac004ca12a0.svg",
-  preferencesTab: "https://www.figma.com/api/mcp/asset/bac71477-8d4b-458e-af75-b4c0c9365b7a.svg",
-  edit: "https://www.figma.com/api/mcp/asset/b1724d9d-f829-4d92-8c7c-171b17610a15.svg",
-  trash: "https://www.figma.com/api/mcp/asset/07b79396-d014-4a08-8d7b-d2a0de6fc4f1.svg",
-  export: "https://www.figma.com/api/mcp/asset/bcc37577-5eb2-4303-97b7-c92c525a428e.svg",
-  actionChevron: "https://www.figma.com/api/mcp/asset/3abcd73c-3f9b-4f1a-a63b-80d36ce29079.svg",
-  deleteIllustration: "https://www.figma.com/api/mcp/asset/bdd3f1a9-a40d-447b-9f64-be3e18f50fa1.png",
+  brand: `${ASSET_BASE}dashboard-brand.svg`,
+  profileSmall: `${ASSET_BASE}settings-profile-small.png`,
+  profileLarge: `${ASSET_BASE}settings-profile-large.png`,
+  notification: `${ASSET_BASE}dashboard-notification.svg`,
+  dashboard: `${ASSET_BASE}dashboard-menu.svg`,
+  wallet: `${ASSET_BASE}dashboard-wallet.svg`,
+  analytics: `${ASSET_BASE}dashboard-analytics.svg`,
+  settings: `${ASSET_BASE}dashboard-settings.svg`,
+  help: `${ASSET_BASE}dashboard-help.svg`,
+  logout: `${ASSET_BASE}dashboard-logout.svg`,
+  collapse: `${ASSET_BASE}dashboard-chevron.svg`,
+  dateChevron: `${ASSET_BASE}dashboard-date-chevron.svg`,
+  profileTab: `${ASSET_BASE}settings-tab-profile.svg`,
+  notificationTab: `${ASSET_BASE}settings-tab-notifications.svg`,
+  preferencesTab: `${ASSET_BASE}settings-tab-preferences.svg`,
+  edit: `${ASSET_BASE}campaign-edit.svg`,
+  trash: `${ASSET_BASE}campaign-trash.svg`,
+  export: `${ASSET_BASE}settings-export.svg`,
+  actionChevron: "/assets/nano-v2/testimonial-right.svg",
+  deleteIllustration: `${ASSET_BASE}settings-delete-account.png`,
 };
 
 const tabs = [
