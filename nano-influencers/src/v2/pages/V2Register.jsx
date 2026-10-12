@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import "./v2-register.css";
 
 const assets = {
-  brandIcon: "https://www.figma.com/api/mcp/asset/c7328e6a-3ba7-4c2d-88e5-956c51714eb6.svg",
-  google: "https://www.figma.com/api/mcp/asset/707f30f5-7374-4deb-af67-4fe0421d1b11.svg",
-  facebook: "https://www.figma.com/api/mcp/asset/9411d5eb-cc57-49c2-8d41-591a9aa37938.svg",
-  eyeSlash: "https://www.figma.com/api/mcp/asset/fd58d362-f175-4464-97ae-b3a5d148c2d0.svg",
+  brandIcon: "/assets/nano-v2/brand-mark.svg",
+  google: "/assets/nano-v2-app/auth-google.svg",
+  facebook: "/assets/nano-v2-app/auth-facebook.svg",
+  eyeSlash: "/assets/nano-v2-app/auth-eye-slash.svg",
 };
 
 function Brand() {
