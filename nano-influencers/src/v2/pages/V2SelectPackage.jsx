@@ -3,13 +3,14 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "../components/ui/Button.jsx";
 import "./v2-select-package.css";
 
+const ASSET_BASE = "/assets/nano-v2-app/";
 const assets = {
-  bronze: "https://www.figma.com/api/mcp/asset/ddf96f4a-1444-48b3-87f2-a43b66070a9a.png",
-  silver: "https://www.figma.com/api/mcp/asset/e22949a4-11cb-4a18-9ee9-51e7784fa5c3.png",
-  gold: "https://www.figma.com/api/mcp/asset/225e82b8-6bd1-468c-80b4-de03fbd9b2a8.png",
-  megaphone: "https://www.figma.com/api/mcp/asset/9de3ab2d-6b29-48b4-b628-1b43950428b6.svg",
-  arrowLeft: "https://www.figma.com/api/mcp/asset/185debf3-0579-4e89-ae85-c89138b474bc.svg",
-  check: "https://www.figma.com/api/mcp/asset/bfcdc0e8-b4a7-4ead-88f7-32aa82df365c.svg",
+  bronze: `${ASSET_BASE}package-bronze.png`,
+  silver: `${ASSET_BASE}package-silver.png`,
+  gold: `${ASSET_BASE}package-gold.png`,
+  megaphone: `${ASSET_BASE}package-megaphone.svg`,
+  arrowLeft: `${ASSET_BASE}package-arrow-left.svg`,
+  check: `${ASSET_BASE}package-check.svg`,
 };
 
 const packageData = {
