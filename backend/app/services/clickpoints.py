@@ -57,6 +57,10 @@ def calculate_worker_pay_kobo(
     video_subtype: str | None = None,
     tni_service_type: str | None = None,
 ) -> int:
+    # Try-for-Free campaigns are unpaid worker tasks; rewards are ClickPoints.
+    if tni_service_type == "try_for_free":
+        return 0
+
     # Twitter Trend: flat ₦3 (300 kobo) regardless of client price
     if tni_service_type == "trend_on_x" or action_type == "trend":
         return 300
