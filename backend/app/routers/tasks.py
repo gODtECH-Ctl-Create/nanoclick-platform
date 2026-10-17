@@ -1,16 +1,17 @@
 import uuid
 from datetime import datetime, timedelta
 from fastapi import APIRouter, Depends, HTTPException, Query
-from sqlalchemy import select, and_, func
+from sqlalchemy import select, and_, func, update
 from sqlalchemy.ext.asyncio import AsyncSession
 from app.database import get_db
 from app.dependencies import get_current_user, require_worker
 from app.models.user import User
 from app.models.task import Task, TaskAcceptance, Submission, TaskReport, LeaderboardScore
 from app.models.campaign import Campaign, CampaignTargeting
+from app.models.campaign_worker_audience import CampaignWorkerAudience
 from app.schemas.task import TaskResponse, AcceptTaskResponse, SubmissionCreate, SubmissionResponse, SubmissionWithTaskResponse, TaskReportCreate, PresignedUrlRequest, PresignedUrlResponse, LeaderboardEntryResponse
 from app.services.storage import generate_presigned_upload_url, compute_image_hash, validate_uploaded_object
-from app.services.targeting_eligibility import is_worker_eligible
+from app.services.targeting_eligibility import is_worker_eligible_for_campaign
 
 router = APIRouter(prefix="/tasks", tags=["tasks"])
 
@@ -18,7 +19,7 @@ async def _enforce_task_visibility(task_id: uuid.UUID, current_user: User, db: A
     if current_user.kyc_verified:
         targeted = await db.execute(select(CampaignTargeting).join(Task, Task.campaign_id == CampaignTargeting.campaign_id).where(Task.id == task_id))
         targeting = targeted.scalar_one_or_none()
-        if targeting is not None and not await is_worker_eligible(db, current_user.id, targeting):
+        if targeting is not None and not await is_worker_eligible_for_campaign(db, current_user.id, targeting):
             raise HTTPException(403, "You do not match this task's targeting criteria")
         return
     targeted = await db.execute(select(CampaignTargeting.campaign_id).join(Task, Task.campaign_id == CampaignTargeting.campaign_id).where(Task.id == task_id))
@@ -65,6 +66,7 @@ async def list_tasks(category: str = Query(None), difficulty: str = Query(None),
     scan_size = max(limit, 100)
     eligible_seen = 0
     visible = []
+    visible_targeted_ids: list[uuid.UUID] = []
     targeting_cache: dict[uuid.UUID, CampaignTargeting | None] = {}
 
     while len(visible) < limit:
@@ -85,12 +87,14 @@ async def list_tasks(category: str = Query(None), difficulty: str = Query(None),
                 targeting_result = await db.execute(select(CampaignTargeting).where(CampaignTargeting.campaign_id == task.campaign_id))
                 targeting_cache[task.campaign_id] = targeting_result.scalar_one_or_none()
             targeting = targeting_cache[task.campaign_id]
-            if targeting is not None and not await is_worker_eligible(db, current_user.id, targeting):
+            if targeting is not None and not await is_worker_eligible_for_campaign(db, current_user.id, targeting):
                 continue
             if eligible_seen < offset:
                 eligible_seen += 1
                 continue
             visible.append({**{c.name: getattr(task, c.name) for c in task.__table__.columns}, "id": str(task.id), "pay_ngn": task.pay_kobo/100})
+            if targeting is not None:
+                visible_targeted_ids.append(task.campaign_id)
             eligible_seen += 1
             if len(visible) >= limit:
                 break
@@ -99,6 +103,8 @@ async def list_tasks(category: str = Query(None), difficulty: str = Query(None),
         if len(tasks) < scan_size:
             break
 
+    if visible_targeted_ids:
+        await db.execute(update(CampaignWorkerAudience).where(CampaignWorkerAudience.worker_id == current_user.id, CampaignWorkerAudience.campaign_id.in_(set(visible_targeted_ids)), CampaignWorkerAudience.visible_at.is_(None)).values(visible_at=datetime.utcnow()))
     return visible
 
 @router.get("/my-stats")
@@ -151,6 +157,7 @@ async def submit_task(task_id: uuid.UUID, body: SubmissionCreate, current_user: 
     now = datetime.utcnow()
     if acceptance.expires_at <= now:
         acceptance.status = "expired"
+        await db.commit()
         raise HTTPException(400, "Acceptance window expired")
     task_r = await db.execute(select(Task).where(Task.id == task_id).with_for_update())
     task = task_r.scalar_one_or_none()

@@ -98,6 +98,18 @@ def _hard_filters(t: CampaignTargeting) -> list:
             for ind in t.target_industries
         ]))
 
+    if t.target_races:
+        f.append(func.lower(KycProfile.race).in_([r.lower() for r in t.target_races]))
+
+    if t.target_countries:
+        f.append(func.lower(KycProfile.primary_country).in_([c.lower() for c in t.target_countries]))
+
+    if t.target_skills:
+        f.append(KycProfile.skills.op("&&")([s.lower() for s in t.target_skills]))
+
+    if t.target_interests:
+        f.append(KycProfile.interests_hobbies.op("&&")([i.lower() for i in t.target_interests]))
+
     if t.min_follower_count:
         f.append(KycProfile.follower_count >= t.min_follower_count)
 
@@ -163,7 +175,8 @@ class LocationExpander:
 
     MAX_TIERS = 9
 
-    def __init__(self, target_cities: list[str], target_states: list[str], target_ethnicities: list[str]):
+    def __init__(self, target_cities: list[str], target_states: list[str], target_ethnicities: list[str], max_tier: int = 9):
+        self.max_tier = max(1, min(max_tier, self.MAX_TIERS))
         self.cities   = [c.lower() for c in (target_cities or [])]
         self.states   = [s.lower() for s in (target_states or [])]
         self.ethnicities = [e.lower() for e in (target_ethnicities or [])]
@@ -275,7 +288,7 @@ class LocationExpander:
         cumulative = len(seen)
 
         # Primary target loop: Tiers 1–9
-        for tier in range(1, self.MAX_TIERS + 1):
+        for tier in range(1, self.max_tier + 1):
             filters = self._tier_filter(tier, self.cities, self.states)
             if not filters:
                 continue
@@ -354,7 +367,8 @@ class GenderExpander:
     """
     MAX_TIERS = 3
 
-    def __init__(self, target_genders: list[str]):
+    def __init__(self, target_genders: list[str], max_tier: int = 3):
+        self.max_tier = max(1, min(max_tier, self.MAX_TIERS))
         self.genders = [g.lower() for g in (target_genders or [])]
 
     def has_targets(self) -> bool:
@@ -370,7 +384,7 @@ class GenderExpander:
         results: list[TierResult] = []
         cumulative = len(seen)
 
-        for tier in range(1, self.MAX_TIERS + 1):
+        for tier in range(1, self.max_tier + 1):
             filters = self._tier_filter(tier)
             if not filters:
                 continue
@@ -423,7 +437,8 @@ class AgeExpander:
     """
     MAX_TIERS = 2
 
-    def __init__(self, target_brackets: list[str]):
+    def __init__(self, target_brackets: list[str], max_tier: int = 2):
+        self.max_tier = max(1, min(max_tier, self.MAX_TIERS))
         self.brackets = target_brackets or []
 
     def has_targets(self) -> bool:
@@ -463,6 +478,9 @@ class AgeExpander:
         if cumulative >= desired:
             return results
 
+        if self.max_tier < 2:
+            return results
+
         # Tier 2 — adjacent
         adj = self._adjacent()
         if adj:
@@ -486,7 +504,8 @@ class MaritalExpander:
     """
     MAX_TIERS = 3
 
-    def __init__(self, target_statuses: list[str]):
+    def __init__(self, target_statuses: list[str], max_tier: int = 3):
+        self.max_tier = max(1, min(max_tier, self.MAX_TIERS))
         self.statuses = [s.lower() for s in (target_statuses or [])]
 
     def has_targets(self) -> bool:
@@ -561,9 +580,10 @@ class TargetingEngine:
       - Structured ExpansionResult metadata
     """
 
-    def __init__(self, targeting: CampaignTargeting, desired: int):
+    def __init__(self, targeting: CampaignTargeting, desired: int, max_tier: int = 9):
         self.targeting = targeting
         self.desired = desired
+        self.max_tier = max(1, min(max_tier, 9))
         self.seen: set[uuid.UUID] = set()
         self._tier_results: list[TierResult] = []
 
@@ -584,6 +604,7 @@ class TargetingEngine:
                 t.target_cities or [],
                 t.target_states or [],
                 t.target_ethnicities or [],
+                max_tier=self.max_tier,
             )
             loc_results, neighbouring_used = await expander.expand(
                 db, hard, self.seen, self.desired
@@ -594,7 +615,7 @@ class TargetingEngine:
 
         # ── Gender ────────────────────────────────────────────────────────────
         if t.target_genders:
-            expander = GenderExpander(t.target_genders)
+            expander = GenderExpander(t.target_genders, self.max_tier)
             self._tier_results.extend(
                 await expander.expand(db, hard, self.seen, self.desired)
             )
@@ -603,7 +624,7 @@ class TargetingEngine:
 
         # ── Age ───────────────────────────────────────────────────────────────
         if t.target_age_brackets:
-            expander = AgeExpander(t.target_age_brackets)
+            expander = AgeExpander(t.target_age_brackets, self.max_tier)
             self._tier_results.extend(
                 await expander.expand(db, hard, self.seen, self.desired)
             )
@@ -612,7 +633,7 @@ class TargetingEngine:
 
         # ── Marital status ────────────────────────────────────────────────────
         if t.target_marital_statuses:
-            expander = MaritalExpander(t.target_marital_statuses)
+            expander = MaritalExpander(t.target_marital_statuses, self.max_tier)
             self._tier_results.extend(
                 await expander.expand(db, hard, self.seen, self.desired)
             )
@@ -693,13 +714,16 @@ async def get_eligible_worker_ids(
     targeting: CampaignTargeting,
     desired: int,
     db: AsyncSession,
-    current_tier: int = 1,          # kept for API compatibility; ignored internally
+    current_tier: int = 1,
 ) -> list[uuid.UUID]:
     """
     Drop-in replacement for the original function.
     Returns a flat list of eligible worker UUIDs (trimmed to desired).
     """
-    engine = TargetingEngine(targeting, desired)
+    # The persisted campaign tier is now authoritative: expansion is progressive
+    # rather than rerunning all tiers immediately. Tier 1 is the initial audience;
+    # scheduled expansion can advance the campaign to later tiers.
+    engine = TargetingEngine(targeting, desired, max_tier=max(1, min(current_tier, 9)))
     result = await engine.run(db)
     return result.worker_ids
 
@@ -713,5 +737,5 @@ async def get_eligible_workers_with_metadata(
     Extended entry point — returns the full ExpansionResult with audit metadata.
     Called by the campaigns analytics endpoint.
     """
-    engine = TargetingEngine(targeting, desired)
+    engine = TargetingEngine(targeting, desired, max_tier=max(1, min(targeting.current_expansion_tier, 9)))
     return await engine.run(db)

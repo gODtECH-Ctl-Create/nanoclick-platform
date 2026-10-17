@@ -1,6 +1,7 @@
 import os
 
 import pytest_asyncio
+from sqlalchemy import select, text
 from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker, create_async_engine
 
 os.environ.setdefault(
@@ -8,6 +9,7 @@ os.environ.setdefault(
     "postgresql+asyncpg://ci:ci@localhost:5432/nanoclick",
 )
 os.environ.setdefault("SECRET_KEY", "test-secret-key-at-least-32-characters-long")
+os.environ.setdefault("APP_ENV", "test")
 
 from app.database import Base
 from app.models import *  # noqa: F401,F403
@@ -31,12 +33,81 @@ async def test_engine():
 
     maker = async_sessionmaker(engine, class_=AsyncSession, expire_on_commit=False)
     async with maker() as session:
-        session.add(PlatformWallet(wallet_key="platform_revenue", balance_kobo=0))
+        for wallet_key in ("platform_revenue", "reward_pool"):
+            existing = (await session.execute(
+                select(PlatformWallet).where(PlatformWallet.wallet_key == wallet_key)
+            )).scalar_one_or_none()
+            if existing is None:
+                session.add(PlatformWallet(wallet_key=wallet_key, balance_kobo=0))
+        await session.commit()
+
+        # PostgreSQL dollar-quoted function bodies must use matching tags.
+        # A bare single "$" is not a valid dollar-quote delimiter.
+        await session.execute(text("""
+            CREATE OR REPLACE FUNCTION prevent_financial_ledger_mutation()
+            RETURNS trigger LANGUAGE plpgsql AS $$
+            BEGIN
+                RAISE EXCEPTION 'Financial ledger rows are immutable: % on % is not permitted',
+                    TG_OP, TG_TABLE_NAME USING ERRCODE = 'restrict_violation';
+            END;
+            $$;
+        """))
+        await session.execute(text("""
+            CREATE OR REPLACE FUNCTION validate_platform_ledger_snapshot()
+            RETURNS trigger LANGUAGE plpgsql AS $$
+            DECLARE current_balance BIGINT;
+            BEGIN
+                SELECT balance_kobo INTO current_balance FROM platform_wallets WHERE id = NEW.platform_wallet_id;
+                IF current_balance IS NULL THEN
+                    RAISE EXCEPTION 'Platform wallet does not exist' USING ERRCODE = 'foreign_key_violation';
+                END IF;
+                IF NEW.balance_after_kobo <> current_balance THEN
+                    RAISE EXCEPTION 'Platform ledger snapshot does not match wallet balance' USING ERRCODE = 'check_violation';
+                END IF;
+                RETURN NEW;
+            END;
+            $$;
+        """))
+        await session.execute(text("""
+            CREATE TRIGGER trg_transactions_immutable
+            BEFORE UPDATE OR DELETE ON transactions
+            FOR EACH ROW EXECUTE FUNCTION prevent_financial_ledger_mutation()
+        """))
+        await session.execute(text("""
+            CREATE TRIGGER trg_platform_wallet_transactions_immutable
+            BEFORE UPDATE OR DELETE ON platform_wallet_transactions
+            FOR EACH ROW EXECUTE FUNCTION prevent_financial_ledger_mutation()
+        """))
+        await session.execute(text("""
+            CREATE TRIGGER trg_platform_ledger_snapshot
+            BEFORE INSERT ON platform_wallet_transactions
+            FOR EACH ROW EXECUTE FUNCTION validate_platform_ledger_snapshot()
+        """))
         await session.commit()
 
     yield engine
 
+    # Base.metadata.drop_all() removes tables, but PostgreSQL trigger/function
+    # objects are schema-level objects and therefore survive table recreation.
+    # Remove them explicitly so every function-scoped engine starts clean.
     async with engine.begin() as conn:
+        await conn.execute(text(
+            "DROP TRIGGER IF EXISTS trg_platform_ledger_snapshot "
+            "ON platform_wallet_transactions"
+        ))
+        await conn.execute(text(
+            "DROP TRIGGER IF EXISTS trg_platform_wallet_transactions_immutable "
+            "ON platform_wallet_transactions"
+        ))
+        await conn.execute(text(
+            "DROP TRIGGER IF EXISTS trg_transactions_immutable ON transactions"
+        ))
+        await conn.execute(text(
+            "DROP FUNCTION IF EXISTS validate_platform_ledger_snapshot()"
+        ))
+        await conn.execute(text(
+            "DROP FUNCTION IF EXISTS prevent_financial_ledger_mutation()"
+        ))
         await conn.run_sync(Base.metadata.drop_all)
     await engine.dispose()
 

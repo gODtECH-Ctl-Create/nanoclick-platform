@@ -260,6 +260,15 @@ class ApiClient {
   Future<void> submitKyc(Map<String, dynamic> fields) async => await _request('POST', '/kyc/submit', body: fields);
   Future<String> kycStatus() async => (await _request('GET', '/kyc/status') as Map<String, dynamic>)['status'] as String;
   Future<Map<String, dynamic>> rewardsProgress() async => await _request('GET', '/rewards/progress') as Map<String, dynamic>;
+  Future<Map<String, dynamic>> rewardsDashboard() async => await _request('GET', '/rewards/dashboard') as Map<String, dynamic>;
+  Future<Map<String, dynamic>> tryForFree() async => await _request('GET', '/rewards/try-for-free') as Map<String, dynamic>;
+  Future<List<dynamic>> activeGifts() async { final response = await _request('GET', '/rewards/gifts') as Map<String, dynamic>; return List<dynamic>.from(response['gifts'] as List? ?? const []); }
+  Future<Map<String, dynamic>> enterGift(String campaignId) async => await _request('POST', '/rewards/gifts/${Uri.encodeComponent(campaignId)}/enter') as Map<String, dynamic>;
+  Future<List<dynamic>> myGiftWins() async => await _request('GET', '/rewards/gifts/my-wins') as List<dynamic>;
+  Future<Map<String, dynamic>> activeTreasure() async => await _request('GET', '/rewards/treasure') as Map<String, dynamic>;
+  Future<Map<String, dynamic>> participateTreasure() async => await _request('POST', '/rewards/treasure/participate') as Map<String, dynamic>;
+  Future<Map<String, dynamic>> treasureHint({required bool useEarnings}) async => await _request('POST', '/rewards/treasure/hint?use_earnings=$useEarnings') as Map<String, dynamic>;
+  Future<Map<String, dynamic>> claimTreasure(String claimCode) async => await _request('POST', '/rewards/treasure/claim', body: {'claim_code': claimCode}) as Map<String, dynamic>;
   Future<List<dynamic>> listNotifications({bool unreadOnly = false, int limit = 50, int offset = 0}) async { final query = Uri(queryParameters: {'unread_only': '$unreadOnly', 'limit': '$limit', 'offset': '$offset'}).query; return await _request('GET', '/notifications?$query') as List<dynamic>; }
   Future<int> unreadNotificationCount() async => (await _request('GET', '/notifications/unread-count') as Map<String, dynamic>)['count'] as int;
   Future<void> markNotificationRead(String id) async => await _request('POST', '/notifications/$id/read');
